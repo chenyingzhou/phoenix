@@ -1,25 +1,26 @@
 package com.vova.phoenix.service;
 
-import com.vova.phoenix.dao.AdminNodeMapper;
-import com.vova.phoenix.dao.AdminUserMapper;
+import com.vova.phoenix.mapper.AdminNodeMapper;
+import com.vova.phoenix.mapper.AdminUserMapper;
 import com.vova.phoenix.model.repository.AdminUser;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
 
 @Service
 public class AuthService {
-    @Autowired
+    @Resource
     private AdminNodeMapper adminNodeMapper;
 
-    @Autowired
+    @Resource
     private AdminUserMapper adminUserMapper;
 
-    public AdminUser getAdminUserById(Integer id) {
+    public AdminUser findAdminUserById(Integer id) {
         return adminUserMapper.selectOneById(id);
     }
 
-    public AdminUser getAdminUserByUsername(String username) {
-        return adminUserMapper.selectOneByUsername(username);
+    public AdminUser findAdminUserByUsername(String username) {
+        return adminUserMapper.selectOneByName(username);
     }
 
     public boolean login(AdminUser adminUser, String password) {

@@ -21,7 +21,7 @@ public class AuthController {
         var username = authLoginReq.getUsername();
         var password = authLoginReq.getPassword();
         var resp = new AuthLoginResp();
-        var adminUser = authService.getAdminUserByUsername(username);
+        var adminUser = authService.findAdminUserByUsername(username);
         var success = authService.login(adminUser, password);
         if (success) {
             session.setAttribute(SessionConstant.ADMIN_USER, adminUser);

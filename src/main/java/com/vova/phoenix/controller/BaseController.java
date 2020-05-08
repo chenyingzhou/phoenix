@@ -6,42 +6,27 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class BaseController {
+public abstract class BaseController {
     @Autowired
     protected AuthService authService;
 
     protected <T> BaseResponse<T> sendData(T data) {
-        var response = new BaseResponse<T>();
-        response.setCode(0);
-        response.setMsg("");
-        response.setData(data);
-        return response;
+        return new BaseResponse<>() {{
+            setCode(0);
+            setMsg("");
+            setData(data);
+        }};
     }
 
-    protected <T> BaseResponse<T> sendOk(String msg) {
-        var response = new BaseResponse<T>();
-        response.setCode(0);
-        response.setMsg(msg);
-        return response;
+    protected BaseResponse<Object> sendOk(String msg) {
+        return new BaseResponse<>() {{
+            setCode(0);
+            setMsg(msg);
+        }};
     }
 
-    protected <T> BaseResponse<T> sendOk() {
+    protected BaseResponse<Object> sendOk() {
         return sendOk("");
-    }
-
-    protected <T> BaseResponse<T> sendFail(String msg, Integer code) {
-        var response = new BaseResponse<T>();
-        response.setCode(code);
-        response.setMsg(msg);
-        return response;
-    }
-
-    protected <T> BaseResponse<T> sendFail(String msg) {
-        return sendFail(msg, -1);
-    }
-
-    protected <T> BaseResponse<T> sendFail() {
-        return sendFail("");
     }
 
 }

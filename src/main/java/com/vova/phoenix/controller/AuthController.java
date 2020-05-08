@@ -1,6 +1,7 @@
 package com.vova.phoenix.controller;
 
 import com.vova.phoenix.constant.SessionConstant;
+import com.vova.phoenix.controller.handler.exception.BizException;
 import com.vova.phoenix.model.dto.BaseResponse;
 import com.vova.phoenix.model.dto.request.AuthLoginReq;
 import com.vova.phoenix.model.dto.response.AuthLoginResp;
@@ -14,7 +15,7 @@ import javax.servlet.http.HttpSession;
 @RestController
 public class AuthController extends BaseController {
     @PostMapping("/auth/login")
-    public BaseResponse<Object> login(@RequestBody AuthLoginReq authLoginReq, HttpSession session) {
+    public BaseResponse<AuthLoginResp> login(@RequestBody AuthLoginReq authLoginReq, HttpSession session) {
         var username = authLoginReq.getUsername();
         var password = authLoginReq.getPassword();
         var resp = new AuthLoginResp();
@@ -26,7 +27,7 @@ public class AuthController extends BaseController {
             return sendData(resp);
         } else {
             session.setAttribute(SessionConstant.ADMIN_USER, null);
-            return sendFail("账号或密码错误");
+            throw new BizException("账号或密码错误");
         }
     }
 

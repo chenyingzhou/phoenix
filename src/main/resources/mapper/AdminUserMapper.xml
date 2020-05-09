@@ -9,6 +9,7 @@
     <result column="role_id" jdbcType="TINYINT" property="roleId" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="real_name" jdbcType="VARCHAR" property="realName" />
+    <result column="admin" jdbcType="TINYINT" property="admin" />
     <result column="app_platform" jdbcType="VARCHAR" property="appPlatform" />
     <result column="email" jdbcType="VARCHAR" property="email" />
     <result column="password" jdbcType="VARCHAR" property="password" />
@@ -19,16 +20,10 @@
   </resultMap>
 
   <select id="selectOneById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    SELECT `id`, `role_id`, `name`, `real_name`, `app_platform`, `email`, `password`, `status`,
-           `operator_id`, `create_time`, `update_time`
-    FROM `admin_user`
-    WHERE `id` = #{id,jdbcType=INTEGER}
+    SELECT * FROM `admin_user` WHERE `id` = #{id,jdbcType=INTEGER} AND `status` > -1
   </select>
 
   <select id="selectOneByName" parameterType="java.lang.String" resultMap="BaseResultMap">
-    SELECT `id`, `role_id`, `name`, `real_name`, `app_platform`, `email`, `password`, `status`,
-           `operator_id`, `create_time`, `update_time`
-    FROM `admin_user`
-    WHERE `name` = #{name,jdbcType=VARCHAR}
+    SELECT * FROM `admin_user` WHERE `name` = #{name,jdbcType=VARCHAR} AND `status` > -1
   </select>
 </mapper>

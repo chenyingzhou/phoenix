@@ -33,6 +33,11 @@ public class AdminUser implements Serializable {
     private String realName;
 
     /**
+     * 管理员
+     */
+    private Byte admin;
+
+    /**
      * vova/airyclub
      */
     @Column(name = "app_platform")
@@ -89,6 +94,10 @@ public class AdminUser implements Serializable {
 
     public static final String DB_REAL_NAME = "real_name";
 
+    public static final String ADMIN = "admin";
+
+    public static final String DB_ADMIN = "admin";
+
     public static final String APP_PLATFORM = "appPlatform";
 
     public static final String DB_APP_PLATFORM = "app_platform";
@@ -127,6 +136,7 @@ public class AdminUser implements Serializable {
         sb.append(", roleId=").append(roleId);
         sb.append(", name=").append(name);
         sb.append(", realName=").append(realName);
+        sb.append(", admin=").append(admin);
         sb.append(", appPlatform=").append(appPlatform);
         sb.append(", email=").append(email);
         sb.append(", password=").append(password);
@@ -144,6 +154,7 @@ public class AdminUser implements Serializable {
         instance.roleId = new Byte("0");
         instance.name = new String("");
         instance.realName = new String("");
+        instance.admin = new Byte("0");
         instance.appPlatform = new String("vova");
         instance.email = new String("");
         instance.password = new String("");

@@ -2,37 +2,37 @@ package com.vova.phoenix.model.vo;
 
 import lombok.Data;
 
-import java.util.List;
+import java.util.*;
 
 @Data
 public class AuthMenu {
     /**
      * ID
      */
-    private Integer id;
+    private Integer id = 0;
 
     /**
      * 父节点ID
      */
-    private Integer parentId;
+    private Integer parentId = 0;
 
     /**
      * 节点名称
      */
-    private String name;
+    private String name = "";
 
     /**
      * 节点code
      */
-    private String code;
+    private String code = "";
 
     /**
      * 状态
      */
-    private Byte status;
+    private Byte status = 1;
 
     /**
      * 子节点
      */
-    private List<AuthMenu> children;
+    private List<AuthMenu> children = new ArrayList<>();
 }

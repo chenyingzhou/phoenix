@@ -1,16 +1,25 @@
 package com.vova.phoenix.controller;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.TypeReference;
 import com.vova.phoenix.constant.SessionConstant;
 import com.vova.phoenix.controller.handler.exception.BizException;
+import com.vova.phoenix.model.converter.beancopy.CachedBeanCopier;
 import com.vova.phoenix.model.dto.BaseResponse;
 import com.vova.phoenix.model.dto.request.AuthLoginReq;
 import com.vova.phoenix.model.dto.response.AuthLoginResp;
+import com.vova.phoenix.model.dto.response.AuthMenuResp;
+import com.vova.phoenix.model.repository.AdminUser;
+import com.vova.phoenix.model.repository.AdminUserNode;
+import com.vova.phoenix.model.vo.AuthMenu;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 public class AuthController extends BaseController {
@@ -38,8 +47,19 @@ public class AuthController extends BaseController {
     }
 
     @GetMapping("/auth/menu")
-    public BaseResponse<Object> menu(HttpSession session) {
-        return sendOk("啥也没有");
+    public BaseResponse<List<AuthMenuResp>> menu(HttpSession session) {
+        var adminUser = (AdminUser)session.getAttribute(SessionConstant.ADMIN_USER);
+        var adminUserNode = authService.findAdminUserNodeByUserId(adminUser.getId());
+        if (null == adminUserNode) {
+            adminUserNode = new AdminUserNode();
+            adminUserNode.setNodeIds(JSON.toJSONString(new ArrayList<>()));
+        }
+        var adminNodeIdList = JSON.parseObject(adminUserNode.getNodeIds(), new TypeReference<List<Integer>>(){});
+        var adminNodeList = authService.findAdminNodeByIdList(adminNodeIdList);
+        var authMenuRoot = authService.adminNodeList2AuthMenuTree(adminNodeList, new AuthMenu());
+        var authMenuRespRoot = new AuthMenuResp();
+        CachedBeanCopier.copy(authMenuRoot, authMenuRespRoot);
+        return sendData(authMenuRespRoot.getChildren());
     }
 
 }

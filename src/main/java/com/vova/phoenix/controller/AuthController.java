@@ -5,6 +5,7 @@ import com.alibaba.fastjson.TypeReference;
 import com.vova.phoenix.constant.SessionConstant;
 import com.vova.phoenix.controller.handler.exception.BizException;
 import com.vova.phoenix.model.converter.beancopy.CachedBeanCopier;
+import com.vova.phoenix.model.dto.BaseListResponse;
 import com.vova.phoenix.model.dto.BaseResponse;
 import com.vova.phoenix.model.dto.request.AuthLoginReq;
 import com.vova.phoenix.model.dto.response.AuthLoginResp;
@@ -47,7 +48,7 @@ public class AuthController extends BaseController {
     }
 
     @GetMapping("/auth/menu")
-    public BaseResponse<List<AuthMenuResp>> menu(HttpSession session) {
+    public BaseListResponse<AuthMenuResp> menu(HttpSession session) {
         var adminUser = (AdminUser)session.getAttribute(SessionConstant.ADMIN_USER);
         var adminUserNode = authService.findAdminUserNodeByUserId(adminUser.getId());
         if (null == adminUserNode) {
@@ -59,7 +60,7 @@ public class AuthController extends BaseController {
         var authMenuRoot = authService.adminNodeList2AuthMenuTree(adminNodeList, new AuthMenu());
         var authMenuRespRoot = new AuthMenuResp();
         CachedBeanCopier.copy(authMenuRoot, authMenuRespRoot);
-        return sendData(authMenuRespRoot.getChildren());
+        return sendList(authMenuRespRoot.getChildren());
     }
 
 }

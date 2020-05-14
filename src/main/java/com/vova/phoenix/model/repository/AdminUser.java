@@ -1,9 +1,13 @@
 package com.vova.phoenix.model.repository;
 
+import lombok.Data;
+
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.Date;
-import javax.persistence.*;
-import lombok.Data;
 
 @Data
 @Table(name = "admin_user")
@@ -38,12 +42,6 @@ public class AdminUser implements Serializable {
     private Byte admin;
 
     /**
-     * vova/airyclub
-     */
-    @Column(name = "app_platform")
-    private String appPlatform;
-
-    /**
      * 邮箱
      */
     private String email;
@@ -76,6 +74,18 @@ public class AdminUser implements Serializable {
     @Column(name = "update_time")
     private Date updateTime;
 
+    /**
+     * vova/airyclub
+     */
+    @Column(name = "app_platform_list")
+    private String appPlatformList;
+
+    /**
+     * push/coupon
+     */
+    @Column(name = "message_type_list")
+    private String messageTypeList;
+
     private static final long serialVersionUID = 1L;
 
     public static final String ID = "id";
@@ -97,10 +107,6 @@ public class AdminUser implements Serializable {
     public static final String ADMIN = "admin";
 
     public static final String DB_ADMIN = "admin";
-
-    public static final String APP_PLATFORM = "appPlatform";
-
-    public static final String DB_APP_PLATFORM = "app_platform";
 
     public static final String EMAIL = "email";
 
@@ -126,6 +132,14 @@ public class AdminUser implements Serializable {
 
     public static final String DB_UPDATE_TIME = "update_time";
 
+    public static final String APP_PLATFORM_LIST = "appPlatformList";
+
+    public static final String DB_APP_PLATFORM_LIST = "app_platform_list";
+
+    public static final String MESSAGE_TYPE_LIST = "messageTypeList";
+
+    public static final String DB_MESSAGE_TYPE_LIST = "message_type_list";
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -137,13 +151,14 @@ public class AdminUser implements Serializable {
         sb.append(", name=").append(name);
         sb.append(", realName=").append(realName);
         sb.append(", admin=").append(admin);
-        sb.append(", appPlatform=").append(appPlatform);
         sb.append(", email=").append(email);
         sb.append(", password=").append(password);
         sb.append(", status=").append(status);
         sb.append(", operatorId=").append(operatorId);
         sb.append(", createTime=").append(createTime);
         sb.append(", updateTime=").append(updateTime);
+        sb.append(", appPlatformList=").append(appPlatformList);
+        sb.append(", messageTypeList=").append(messageTypeList);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();
@@ -155,7 +170,6 @@ public class AdminUser implements Serializable {
         instance.name = new String("");
         instance.realName = new String("");
         instance.admin = new Byte("0");
-        instance.appPlatform = new String("vova");
         instance.email = new String("");
         instance.password = new String("");
         instance.status = new Byte("0");

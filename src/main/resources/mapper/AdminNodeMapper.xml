@@ -14,8 +14,4 @@
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
   </resultMap>
-
-  <select id="selectAll" resultMap="BaseResultMap">
-    SELECT * FROM `admin_node` WHERE `status` > -1
-  </select>
 </mapper>

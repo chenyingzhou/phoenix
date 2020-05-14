@@ -10,6 +10,7 @@ import com.vova.phoenix.model.dto.BaseResponse;
 import com.vova.phoenix.model.dto.request.AuthLoginReq;
 import com.vova.phoenix.model.dto.response.AuthLoginResp;
 import com.vova.phoenix.model.dto.response.AuthMenuResp;
+import com.vova.phoenix.model.dto.response.AuthResourceResp;
 import com.vova.phoenix.model.repository.AdminUser;
 import com.vova.phoenix.model.repository.AdminUserNode;
 import com.vova.phoenix.model.vo.AuthMenu;
@@ -61,6 +62,17 @@ public class AuthController extends BaseController {
         var authMenuRespRoot = new AuthMenuResp();
         CachedBeanCopier.copy(authMenuRoot, authMenuRespRoot);
         return sendList(authMenuRespRoot.getChildren());
+    }
+
+    @GetMapping("/auth/resource")
+    public BaseResponse<AuthResourceResp> resource(HttpSession session) {
+        var adminUser = (AdminUser)session.getAttribute(SessionConstant.ADMIN_USER);
+        var appPlatformList = JSON.parseObject(adminUser.getAppPlatformList(), new TypeReference<List<String>>(){});
+        var messageTypeList = JSON.parseObject(adminUser.getMessageTypeList(), new TypeReference<List<String>>(){});
+        var resp = new AuthResourceResp();
+        resp.setAppPlatformList(appPlatformList);
+        resp.setMessageTypeList(messageTypeList);
+        return sendData(resp);
     }
 
 }

@@ -49,7 +49,7 @@
         <!-- mapper接口 -->
         <javaClientGenerator targetPackage="com.vova.phoenix.mapper" targetProject="src/main/java" type="XMLMAPPER"/>
 
-        <table tableName="admin%">
+        <table tableName="task_config">
             <generatedKey column="id" sqlStatement="JDBC"/>
         </table>
     </context>

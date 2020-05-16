@@ -11,7 +11,7 @@
  Target Server Version : 50730
  File Encoding         : 65001
 
- Date: 09/05/2020 18:25:06
+ Date: 16/05/2020 18:02:55
 */
 
 SET NAMES utf8mb4;
@@ -71,7 +71,8 @@ CREATE TABLE `admin_user` (
   `name` varchar(255) NOT NULL DEFAULT '' COMMENT '用户名称',
   `real_name` varchar(255) NOT NULL DEFAULT '' COMMENT '真实姓名',
   `admin` tinyint(4) NOT NULL DEFAULT '0' COMMENT '管理员',
-  `app_platform` varchar(255) NOT NULL DEFAULT 'vova' COMMENT 'vova/airyclub',
+  `app_platform_list` json NOT NULL COMMENT 'vova/airyclub',
+  `message_type_list` json NOT NULL COMMENT 'push/coupon',
   `email` varchar(255) NOT NULL DEFAULT '' COMMENT '邮箱',
   `password` varchar(255) NOT NULL DEFAULT '' COMMENT '密码',
   `status` tinyint(4) NOT NULL DEFAULT '0' COMMENT '用户状态0-启用1-禁用',
@@ -87,8 +88,8 @@ CREATE TABLE `admin_user` (
 -- Records of admin_user
 -- ----------------------------
 BEGIN;
-INSERT INTO `admin_user` VALUES (1, 1, 'test', 'test', 1, 'airyclub&vova', 'test@vova.com.hk', '098f6bcd4621d373cade4e832627b4f6', 1, 1, '2019-09-02 02:06:36', '2020-05-09 03:10:38');
-INSERT INTO `admin_user` VALUES (2, 0, 'test1', 'test', 0, 'vova', 'test1@vova.com.hk', '098f6bcd4621d373cade4e832627b4f6', 1, 1, '2019-09-02 02:06:36', '2020-05-09 03:10:41');
+INSERT INTO `admin_user` VALUES (1, 1, 'test', 'test', 1, '[\"vova\", \"airyclub\"]', '[\"push\", \"coupon\"]', 'test@vova.com.hk', '098f6bcd4621d373cade4e832627b4f6', 1, 1, '2019-09-02 02:06:36', '2020-05-14 03:36:35');
+INSERT INTO `admin_user` VALUES (2, 0, 'test1', 'test', 0, '[\"vova\"]', '[\"push\"]', 'test1@vova.com.hk', '098f6bcd4621d373cade4e832627b4f6', 1, 1, '2019-09-02 02:06:36', '2020-05-14 03:36:02');
 COMMIT;
 
 -- ----------------------------
@@ -111,7 +112,42 @@ CREATE TABLE `admin_user_node` (
 -- Records of admin_user_node
 -- ----------------------------
 BEGIN;
-INSERT INTO `admin_user_node` VALUES (1, 1, '[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 23]', 1, 1, '2019-09-09 05:55:29', '2020-05-02 02:44:29');
+INSERT INTO `admin_user_node` VALUES (1, 1, '[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 23]', 1, 1, '2019-09-09 05:55:29', '2020-05-12 08:35:05');
+COMMIT;
+
+-- ----------------------------
+-- Table structure for task_config
+-- ----------------------------
+DROP TABLE IF EXISTS `task_config`;
+CREATE TABLE `task_config` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '自增id',
+  `app_platform` varchar(16) NOT NULL DEFAULT 'vova' COMMENT 'vova/airyclub',
+  `message_title` varchar(255) NOT NULL DEFAULT '' COMMENT '推送消息标题CODE',
+  `message_body` varchar(255) NOT NULL DEFAULT '' COMMENT '推送消息体CODE',
+  `target_tag` json NOT NULL COMMENT '目标用户类型0-用户标签1-用户分层2-国家',
+  `countries` json NOT NULL COMMENT '推送时区',
+  `target_link` varchar(255) NOT NULL DEFAULT '' COMMENT '跳转链接',
+  `image_link` varchar(255) NOT NULL DEFAULT '' COMMENT '图片链接',
+  `task_type` tinyint(4) NOT NULL DEFAULT '0' COMMENT '任务类型：1-功能型 2-营销型',
+  `priority` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '优先级',
+  `remarks` varchar(512) NOT NULL DEFAULT '' COMMENT '备注',
+  `periods` tinyint(3) unsigned NOT NULL DEFAULT '0' COMMENT '执行周期',
+  `expected_time` timestamp NOT NULL DEFAULT '1970-01-01 00:00:01' COMMENT '期望执行时间',
+  `last_time` timestamp NOT NULL DEFAULT '2020-01-01 00:00:00' COMMENT '上次执行时间',
+  `start_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '有效期',
+  `end_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '有效期',
+  `extra` json NOT NULL COMMENT '其他属性',
+  `status` tinyint(4) NOT NULL DEFAULT '0' COMMENT '配置状态',
+  `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最近更新时间',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COMMENT='推送任务配置表';
+
+-- ----------------------------
+-- Records of task_config
+-- ----------------------------
+BEGIN;
+INSERT INTO `task_config` VALUES (1, 'vova', '1', '1', '[]', '[]', '1', '1', 0, 0, '1', 1, '1970-01-01 00:00:01', '2020-01-01 00:00:00', '2020-05-15 09:50:22', '2020-05-15 09:50:22', '[]', 1, '2020-05-15 09:50:22', '2020-05-15 09:55:17');
 COMMIT;
 
 SET FOREIGN_KEY_CHECKS = 1;

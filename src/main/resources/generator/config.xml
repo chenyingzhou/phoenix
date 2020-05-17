@@ -41,7 +41,7 @@
         </jdbcConnection>
 
         <!-- 实体 -->
-        <javaModelGenerator targetPackage="com.vova.phoenix.model.repository" targetProject="src/main/java"/>
+        <javaModelGenerator targetPackage="com.vova.phoenix.model.po.entity" targetProject="src/main/java"/>
 
         <!-- mapper.xml -->
         <sqlMapGenerator targetPackage="mapper" targetProject="src/main/resources"/>

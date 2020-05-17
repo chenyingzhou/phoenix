@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.vova.phoenix.mapper.AdminUserMapper">
-  <resultMap id="BaseResultMap" type="com.vova.phoenix.model.repository.AdminUser">
+  <resultMap id="BaseResultMap" type="com.vova.phoenix.model.po.entity.AdminUser">
     <!--
       WARNING - @mbg.generated
     -->

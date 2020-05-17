@@ -1,7 +1,7 @@
 package com.vova.phoenix.config.interceptor;
 
 import com.vova.phoenix.constant.SessionConstant;
-import com.vova.phoenix.model.repository.AdminUser;
+import com.vova.phoenix.model.po.entity.AdminUser;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.HandlerInterceptor;
 

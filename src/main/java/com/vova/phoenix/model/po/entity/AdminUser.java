@@ -1,4 +1,4 @@
-package com.vova.phoenix.model.repository;
+package com.vova.phoenix.model.po.entity;
 
 import lombok.Data;
 

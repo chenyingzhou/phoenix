@@ -1,7 +1,7 @@
 package com.vova.phoenix.model.converter.p2v;
 
 import com.alibaba.fastjson.JSON;
-import com.vova.phoenix.model.repository.AdminUser;
+import com.vova.phoenix.model.po.entity.AdminUser;
 import com.vova.phoenix.model.vo.Operator;
 import org.springframework.core.convert.converter.Converter;
 

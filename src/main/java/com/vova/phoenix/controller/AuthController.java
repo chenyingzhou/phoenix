@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
 import com.vova.phoenix.constant.SessionConstant;
 import com.vova.phoenix.controller.handler.exception.BizException;
+import com.vova.phoenix.model.converter.P2V;
 import com.vova.phoenix.model.converter.beancopy.CachedBeanCopier;
 import com.vova.phoenix.model.dto.BaseListResponse;
 import com.vova.phoenix.model.dto.BaseResponse;
@@ -14,6 +15,7 @@ import com.vova.phoenix.model.dto.response.AuthResourceResp;
 import com.vova.phoenix.model.repository.AdminUser;
 import com.vova.phoenix.model.repository.AdminUserNode;
 import com.vova.phoenix.model.vo.AuthMenu;
+import com.vova.phoenix.model.vo.Operator;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -34,6 +36,7 @@ public class AuthController extends BaseController {
         var success = null != adminUser && authService.login(adminUser, password);
         if (success) {
             session.setAttribute(SessionConstant.ADMIN_USER, adminUser);
+            session.setAttribute(SessionConstant.OPERATOR, P2V.ADMIN_USER_2_OPERATOR.convert(adminUser));
             resp.setCertificate(session.getId());
             return sendData(resp);
         } else {
@@ -45,6 +48,7 @@ public class AuthController extends BaseController {
     @PostMapping("/auth/logout")
     public BaseResponse<Object> logout(HttpSession session) {
         session.removeAttribute(SessionConstant.ADMIN_USER);
+        session.removeAttribute(SessionConstant.OPERATOR);
         return sendOk("退出成功");
     }
 
@@ -66,12 +70,10 @@ public class AuthController extends BaseController {
 
     @GetMapping("/auth/resource")
     public BaseResponse<AuthResourceResp> resource(HttpSession session) {
-        var adminUser = (AdminUser)session.getAttribute(SessionConstant.ADMIN_USER);
-        var appPlatformList = JSON.parseObject(adminUser.getAppPlatformList(), new TypeReference<List<String>>(){});
-        var messageTypeList = JSON.parseObject(adminUser.getMessageTypeList(), new TypeReference<List<String>>(){});
+        var operator = (Operator)session.getAttribute(SessionConstant.OPERATOR);
         var resp = new AuthResourceResp();
-        resp.setAppPlatformList(appPlatformList);
-        resp.setMessageTypeList(messageTypeList);
+        resp.setAppPlatformList(operator.getAppPlatformList());
+        resp.setMessageTypeList(operator.getMessageTypeList());
         return sendData(resp);
     }
 

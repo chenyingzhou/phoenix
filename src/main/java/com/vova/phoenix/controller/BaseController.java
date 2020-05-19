@@ -3,6 +3,7 @@ package com.vova.phoenix.controller;
 import com.vova.phoenix.model.dto.BaseListResponse;
 import com.vova.phoenix.model.dto.BaseResponse;
 import com.vova.phoenix.service.AuthService;
+import com.vova.phoenix.service.TaskService;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
@@ -12,6 +13,9 @@ import java.util.List;
 public abstract class BaseController {
     @Resource
     protected AuthService authService;
+
+    @Resource
+    protected TaskService taskService;
 
     protected <T> BaseResponse<T> sendData(T data) {
         var resp = new BaseResponse<T>();

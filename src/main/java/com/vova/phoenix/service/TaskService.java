@@ -2,7 +2,6 @@ package com.vova.phoenix.service;
 
 import com.vova.phoenix.mapper.TaskConfigMapper;
 import com.vova.phoenix.model.po.entity.TaskConfig;
-import com.vova.phoenix.model.vo.TaskConfigFilter;
 import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.entity.Example;
 
@@ -14,9 +13,9 @@ public class TaskService {
     @Resource
     private TaskConfigMapper taskConfigMapper;
 
-    public List<TaskConfig> findTaskConfigByFilter(TaskConfigFilter taskConfigFilter) {
+    public List<TaskConfig> findTaskConfigByModel(TaskConfig taskConfig) {
         var example = new Example(TaskConfig.class);
-        example.createCriteria().andEqualTo(taskConfigFilter);
+        example.createCriteria().andEqualTo(taskConfig);
         return taskConfigMapper.selectByExample(example);
     }
 }

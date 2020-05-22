@@ -1,7 +1,5 @@
 package com.vova.phoenix.controller;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.TypeReference;
 import com.vova.phoenix.constant.SessionConstant;
 import com.vova.phoenix.controller.handler.exception.BizException;
 import com.vova.phoenix.model.converter.P2V;
@@ -16,6 +14,7 @@ import com.vova.phoenix.model.po.entity.AdminUser;
 import com.vova.phoenix.model.po.entity.AdminUserNode;
 import com.vova.phoenix.model.vo.AuthMenu;
 import com.vova.phoenix.model.vo.Operator;
+import com.vova.phoenix.util.JacksonUtil;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,7 +22,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
-import java.util.List;
 
 @RestController
 public class AuthController extends BaseController {
@@ -58,9 +56,9 @@ public class AuthController extends BaseController {
         var adminUserNode = authService.findAdminUserNodeByUserId(adminUser.getId());
         if (null == adminUserNode) {
             adminUserNode = new AdminUserNode();
-            adminUserNode.setNodeIds(JSON.toJSONString(new ArrayList<>()));
+            adminUserNode.setNodeIds(JacksonUtil.toJSon(new ArrayList<>()));
         }
-        var adminNodeIdList = JSON.parseObject(adminUserNode.getNodeIds(), new TypeReference<List<Integer>>(){});
+        var adminNodeIdList = JacksonUtil.toList(adminUserNode.getNodeIds(), Integer.class);
         var adminNodeList = authService.findAdminNodeByIdList(adminNodeIdList);
         var authMenuRoot = authService.adminNodeList2AuthMenuTree(adminNodeList, new AuthMenu());
         var authMenuRespRoot = new AuthMenuResp();

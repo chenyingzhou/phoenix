@@ -37,10 +37,10 @@ public class JacksonUtil {
         var valueList = new ArrayList<T>();
         try {
             var objectMapper = threadLocal.get();
-            var mapList = objectMapper.readValue(jsonStr, new TypeReference<List<Map<String, Object>>>() {
+            var objList = objectMapper.readValue(jsonStr, new TypeReference<List<Object>>() {
             });
-            for (Map<String, Object> stringObjectMap : mapList) {
-                valueList.add(objectMapper.convertValue(stringObjectMap, valueType));
+            for (Object obj : objList) {
+                valueList.add(objectMapper.convertValue(obj, valueType));
             }
             return valueList;
         } catch (Exception e) {

@@ -10,7 +10,7 @@ public class CachedBeanCopier {
 
     private static final Map<String, BeanCopier> BEAN_COPIERS = new HashMap<>();
 
-    public static void copy(Object srcObj, Object destObj) {
+    public static <T> T copy(Object srcObj, T destObj) {
         String key = genKey(srcObj.getClass(), destObj.getClass());
         BeanCopier copier;
         if (!BEAN_COPIERS.containsKey(key)) {
@@ -20,9 +20,10 @@ public class CachedBeanCopier {
             copier = BEAN_COPIERS.get(key);
         }
         copier.copy(srcObj, destObj, null);
+        return destObj;
     }
 
-    public static void copy(Object srcObj, Object destObj, Converter converter) {
+    public static <T> T copy(Object srcObj, T destObj, Converter converter) {
         String key = genKey(srcObj.getClass(), destObj.getClass());
         BeanCopier copier;
         if (!BEAN_COPIERS.containsKey(key)) {
@@ -32,6 +33,7 @@ public class CachedBeanCopier {
             copier = BEAN_COPIERS.get(key);
         }
         copier.copy(srcObj, destObj, converter);
+        return destObj;
     }
 
     private static String genKey(Class<?> srcClazz, Class<?> destClazz) {

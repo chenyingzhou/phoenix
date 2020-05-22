@@ -1,6 +1,7 @@
 package com.vova.phoenix.util;
 
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.text.SimpleDateFormat;
@@ -8,15 +9,20 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class JsonUtil {
+public class JacksonUtil {
 
     private static final ThreadLocal<ObjectMapper> threadLocal = ThreadLocal.withInitial(
             () -> {
                 var objectMapper = new ObjectMapper();
                 objectMapper.setDateFormat(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"));
+                objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
                 return objectMapper;
             }
     );
+
+    public static ObjectMapper getObjectMapper() {
+        return threadLocal.get();
+    }
 
     public static <T> T toObject(String jsonStr, Class<T> valueType) {
         try {
@@ -31,7 +37,8 @@ public class JsonUtil {
         var valueList = new ArrayList<T>();
         try {
             var objectMapper = threadLocal.get();
-            var mapList = objectMapper.readValue(jsonStr, new TypeReference<List<Map<String, Object>>>() {});
+            var mapList = objectMapper.readValue(jsonStr, new TypeReference<List<Map<String, Object>>>() {
+            });
             for (Map<String, Object> stringObjectMap : mapList) {
                 valueList.add(objectMapper.convertValue(stringObjectMap, valueType));
             }

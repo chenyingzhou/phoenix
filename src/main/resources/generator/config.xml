@@ -40,6 +40,10 @@
                         password="${jdbc.password}">
         </jdbcConnection>
 
+        <javaTypeResolver type="com.phoenix.common.util.JavaTypeResolverImpl">
+            <property name="forceBigDecimals" value="true" />
+        </javaTypeResolver>
+
         <!-- 实体 -->
         <javaModelGenerator targetPackage="com.vova.phoenix.model.po.entity" targetProject="src/main/java"/>
 

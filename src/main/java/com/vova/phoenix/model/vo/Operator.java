@@ -22,7 +22,7 @@ public class Operator implements Serializable {
     /**
      * 管理员
      */
-    private Byte admin;
+    private Integer admin;
 
     /**
      * 邮箱

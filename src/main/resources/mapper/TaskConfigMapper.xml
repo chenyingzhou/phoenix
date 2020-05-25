@@ -20,6 +20,7 @@
     <result column="start_time" jdbcType="TIMESTAMP" property="startTime" />
     <result column="end_time" jdbcType="TIMESTAMP" property="endTime" />
     <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="operator_id" jdbcType="INTEGER" property="operatorId" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
     <result column="target_tag" jdbcType="LONGVARCHAR" property="targetTag" />

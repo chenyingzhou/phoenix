@@ -6,6 +6,6 @@ import lombok.Data;
 public class TaskConfigFilterReq {
     private String appPlatform;
 
-    private Byte taskType;
+    private Integer taskType;
 
 }

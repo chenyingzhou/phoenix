@@ -20,12 +20,6 @@ public class AdminUser implements Serializable {
     private Integer id;
 
     /**
-     * 用户角色类型:0-管理员1-普通用户
-     */
-    @Column(name = "role_id")
-    private Byte roleId;
-
-    /**
      * 用户名称
      */
     private String name;
@@ -39,7 +33,7 @@ public class AdminUser implements Serializable {
     /**
      * 管理员
      */
-    private Byte admin;
+    private Integer admin;
 
     /**
      * 邮箱
@@ -54,7 +48,7 @@ public class AdminUser implements Serializable {
     /**
      * 用户状态0-启用1-禁用
      */
-    private Byte status;
+    private Integer status;
 
     /**
      * 操作人
@@ -91,10 +85,6 @@ public class AdminUser implements Serializable {
     public static final String ID = "id";
 
     public static final String DB_ID = "id";
-
-    public static final String ROLE_ID = "roleId";
-
-    public static final String DB_ROLE_ID = "role_id";
 
     public static final String NAME = "name";
 
@@ -147,7 +137,6 @@ public class AdminUser implements Serializable {
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
-        sb.append(", roleId=").append(roleId);
         sb.append(", name=").append(name);
         sb.append(", realName=").append(realName);
         sb.append(", admin=").append(admin);
@@ -166,13 +155,12 @@ public class AdminUser implements Serializable {
 
     public static AdminUser defaultInstance() {
         AdminUser instance = new AdminUser();
-        instance.roleId = new Byte("0");
         instance.name = new String("");
         instance.realName = new String("");
-        instance.admin = new Byte("0");
+        instance.admin = new Integer("0");
         instance.email = new String("");
         instance.password = new String("");
-        instance.status = new Byte("0");
+        instance.status = new Integer("0");
         instance.operatorId = new Integer("0");
         return instance;
     }

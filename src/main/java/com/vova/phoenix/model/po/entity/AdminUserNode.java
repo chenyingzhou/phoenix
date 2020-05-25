@@ -1,9 +1,13 @@
 package com.vova.phoenix.model.po.entity;
 
+import lombok.Data;
+
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.Date;
-import javax.persistence.*;
-import lombok.Data;
 
 @Data
 @Table(name = "admin_user_node")
@@ -24,7 +28,7 @@ public class AdminUserNode implements Serializable {
     /**
      * 状态
      */
-    private Byte status;
+    private Integer status;
 
     /**
      * 操作人
@@ -101,7 +105,7 @@ public class AdminUserNode implements Serializable {
     public static AdminUserNode defaultInstance() {
         AdminUserNode instance = new AdminUserNode();
         instance.userId = new Integer("0");
-        instance.status = new Byte("1");
+        instance.status = new Integer("1");
         instance.operatorId = new Integer("0");
         return instance;
     }

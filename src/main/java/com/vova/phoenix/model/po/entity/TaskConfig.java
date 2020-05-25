@@ -1,9 +1,13 @@
 package com.vova.phoenix.model.po.entity;
 
+import lombok.Data;
+
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.Date;
-import javax.persistence.*;
-import lombok.Data;
 
 @Data
 @Table(name = "task_config")
@@ -49,7 +53,7 @@ public class TaskConfig implements Serializable {
      * 任务类型：1-功能型 2-营销型
      */
     @Column(name = "task_type")
-    private Byte taskType;
+    private Integer taskType;
 
     /**
      * 优先级
@@ -64,7 +68,7 @@ public class TaskConfig implements Serializable {
     /**
      * 执行周期
      */
-    private Byte periods;
+    private Integer periods;
 
     /**
      * 期望执行时间
@@ -93,7 +97,13 @@ public class TaskConfig implements Serializable {
     /**
      * 配置状态
      */
-    private Byte status;
+    private Integer status;
+
+    /**
+     * 操作人
+     */
+    @Column(name = "operator_id")
+    private Integer operatorId;
 
     /**
      * 创建时间
@@ -185,6 +195,10 @@ public class TaskConfig implements Serializable {
 
     public static final String DB_STATUS = "status";
 
+    public static final String OPERATOR_ID = "operatorId";
+
+    public static final String DB_OPERATOR_ID = "operator_id";
+
     public static final String CREATE_TIME = "createTime";
 
     public static final String DB_CREATE_TIME = "create_time";
@@ -226,6 +240,7 @@ public class TaskConfig implements Serializable {
         sb.append(", startTime=").append(startTime);
         sb.append(", endTime=").append(endTime);
         sb.append(", status=").append(status);
+        sb.append(", operatorId=").append(operatorId);
         sb.append(", createTime=").append(createTime);
         sb.append(", updateTime=").append(updateTime);
         sb.append(", targetTag=").append(targetTag);
@@ -243,11 +258,12 @@ public class TaskConfig implements Serializable {
         instance.messageBody = new String("");
         instance.targetLink = new String("");
         instance.imageLink = new String("");
-        instance.taskType = new Byte("0");
+        instance.taskType = new Integer("0");
         instance.priority = new Integer("0");
         instance.remarks = new String("");
-        instance.periods = new Byte("0");
-        instance.status = new Byte("0");
+        instance.periods = new Integer("0");
+        instance.status = new Integer("0");
+        instance.operatorId = new Integer("0");
         return instance;
     }
 }

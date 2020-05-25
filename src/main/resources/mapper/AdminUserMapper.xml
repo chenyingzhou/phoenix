@@ -6,7 +6,6 @@
       WARNING - @mbg.generated
     -->
     <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="role_id" jdbcType="TINYINT" property="roleId" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="real_name" jdbcType="VARCHAR" property="realName" />
     <result column="admin" jdbcType="TINYINT" property="admin" />

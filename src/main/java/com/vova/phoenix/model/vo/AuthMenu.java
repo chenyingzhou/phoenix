@@ -29,7 +29,7 @@ public class AuthMenu {
     /**
      * 状态
      */
-    private Byte status = 1;
+    private Integer status = 1;
 
     /**
      * 子节点

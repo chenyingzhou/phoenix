@@ -41,7 +41,7 @@
         </jdbcConnection>
 
         <javaTypeResolver type="com.phoenix.common.util.JavaTypeResolverImpl">
-            <property name="forceBigDecimals" value="true" />
+            <property name="forceBigDecimals" value="true"/>
         </javaTypeResolver>
 
         <!-- 实体 -->
@@ -53,8 +53,17 @@
         <!-- mapper接口 -->
         <javaClientGenerator targetPackage="com.vova.phoenix.mapper" targetProject="src/main/java" type="XMLMAPPER"/>
 
+        <table tableName="admin_user">
+            <generatedKey column="id" sqlStatement="JDBC" identity="true"/>
+        </table>
+        <table tableName="admin_node">
+            <generatedKey column="id" sqlStatement="JDBC" identity="true"/>
+        </table>
+        <table tableName="admin_user_node">
+            <generatedKey column="id" sqlStatement="JDBC" identity="true"/>
+        </table>
         <table tableName="task_config">
-            <generatedKey column="id" sqlStatement="JDBC"/>
+            <generatedKey column="id" sqlStatement="JDBC" identity="true"/>
         </table>
     </context>
 </generatorConfiguration>

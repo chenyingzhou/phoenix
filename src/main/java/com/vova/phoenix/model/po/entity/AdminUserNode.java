@@ -1,13 +1,10 @@
 package com.vova.phoenix.model.po.entity;
 
-import lombok.Data;
-
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
+import javax.persistence.*;
+import lombok.Data;
 
 @Data
 @Table(name = "admin_user_node")
@@ -16,6 +13,7 @@ public class AdminUserNode implements Serializable {
      * 自增id
      */
     @Id
+    @Column(name = "id")
     @GeneratedValue(generator = "JDBC")
     private Integer id;
 
@@ -28,6 +26,7 @@ public class AdminUserNode implements Serializable {
     /**
      * 状态
      */
+    @Column(name = "status")
     private Integer status;
 
     /**
@@ -51,8 +50,8 @@ public class AdminUserNode implements Serializable {
     /**
      * 节点id
      */
-    @Column(name = "node_ids")
-    private String nodeIds;
+    @Column(name = "node_id_list")
+    private java.util.List<Integer> nodeIdList;
 
     private static final long serialVersionUID = 1L;
 
@@ -80,9 +79,9 @@ public class AdminUserNode implements Serializable {
 
     public static final String DB_UPDATE_TIME = "update_time";
 
-    public static final String NODE_IDS = "nodeIds";
+    public static final String NODE_ID_LIST = "nodeIdList";
 
-    public static final String DB_NODE_IDS = "node_ids";
+    public static final String DB_NODE_ID_LIST = "node_id_list";
 
     @Override
     public String toString() {
@@ -96,17 +95,9 @@ public class AdminUserNode implements Serializable {
         sb.append(", operatorId=").append(operatorId);
         sb.append(", createTime=").append(createTime);
         sb.append(", updateTime=").append(updateTime);
-        sb.append(", nodeIds=").append(nodeIds);
+        sb.append(", nodeIdList=").append(nodeIdList);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();
-    }
-
-    public static AdminUserNode defaultInstance() {
-        AdminUserNode instance = new AdminUserNode();
-        instance.userId = new Integer("0");
-        instance.status = new Integer("1");
-        instance.operatorId = new Integer("0");
-        return instance;
     }
 }

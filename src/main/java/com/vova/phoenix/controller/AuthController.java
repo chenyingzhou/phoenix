@@ -56,9 +56,9 @@ public class AuthController extends BaseController {
         var adminUserNode = authService.findAdminUserNodeByUserId(adminUser.getId());
         if (null == adminUserNode) {
             adminUserNode = new AdminUserNode();
-            adminUserNode.setNodeIds(JacksonUtil.toJSon(new ArrayList<>()));
+            adminUserNode.setNodeIdList(new ArrayList<>());
         }
-        var adminNodeIdList = JacksonUtil.toList(adminUserNode.getNodeIds(), Integer.class);
+        var adminNodeIdList = adminUserNode.getNodeIdList();
         var adminNodeList = authService.findAdminNodeByIdList(adminNodeIdList);
         var authMenuRoot = authService.adminNodeList2AuthMenuTree(adminNodeList, new AuthMenu());
         var authMenuRespRoot = new AuthMenuResp();

@@ -1,13 +1,10 @@
 package com.vova.phoenix.model.po.entity;
 
-import lombok.Data;
-
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
+import javax.persistence.*;
+import lombok.Data;
 
 @Data
 @Table(name = "admin_user")
@@ -16,12 +13,14 @@ public class AdminUser implements Serializable {
      * 主键
      */
     @Id
+    @Column(name = "id")
     @GeneratedValue(generator = "JDBC")
     private Integer id;
 
     /**
      * 用户名称
      */
+    @Column(name = "name")
     private String name;
 
     /**
@@ -33,21 +32,25 @@ public class AdminUser implements Serializable {
     /**
      * 管理员
      */
+    @Column(name = "admin")
     private Integer admin;
 
     /**
      * 邮箱
      */
+    @Column(name = "email")
     private String email;
 
     /**
      * 密码
      */
+    @Column(name = "password")
     private String password;
 
     /**
      * 用户状态0-启用1-禁用
      */
+    @Column(name = "status")
     private Integer status;
 
     /**
@@ -72,13 +75,13 @@ public class AdminUser implements Serializable {
      * vova/airyclub
      */
     @Column(name = "app_platform_list")
-    private String appPlatformList;
+    private java.util.List<String> appPlatformList;
 
     /**
      * push/coupon
      */
     @Column(name = "message_type_list")
-    private String messageTypeList;
+    private java.util.List<String> messageTypeList;
 
     private static final long serialVersionUID = 1L;
 
@@ -151,17 +154,5 @@ public class AdminUser implements Serializable {
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();
-    }
-
-    public static AdminUser defaultInstance() {
-        AdminUser instance = new AdminUser();
-        instance.name = new String("");
-        instance.realName = new String("");
-        instance.admin = new Integer("0");
-        instance.email = new String("");
-        instance.password = new String("");
-        instance.status = new Integer("0");
-        instance.operatorId = new Integer("0");
-        return instance;
     }
 }

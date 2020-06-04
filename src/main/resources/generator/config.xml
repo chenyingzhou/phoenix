@@ -29,8 +29,8 @@
             <property name="caseSensitive" value="true"/>
             <!--生成字段常量-->
             <property name="generateColumnConsts" value="true"/>
-            <!--生成默认Instance-->
-            <property name="generateDefaultInstanceMethod" value="true"/>
+            <!--强制生成注解-->
+            <property name="forceAnnotation" value="true"/>
             <property name="lombok" value="Data"/>
         </plugin>
 
@@ -55,15 +55,21 @@
 
         <table tableName="admin_user">
             <generatedKey column="id" sqlStatement="JDBC" identity="true"/>
+            <columnOverride column="app_platform_list" javaType="java.util.List&lt;String&gt;"/>
+            <columnOverride column="message_type_list" javaType="java.util.List&lt;String&gt;"/>
         </table>
         <table tableName="admin_node">
             <generatedKey column="id" sqlStatement="JDBC" identity="true"/>
         </table>
         <table tableName="admin_user_node">
             <generatedKey column="id" sqlStatement="JDBC" identity="true"/>
+            <columnOverride column="node_id_list" javaType="java.util.List&lt;Integer&gt;"/>
         </table>
         <table tableName="task_config">
             <generatedKey column="id" sqlStatement="JDBC" identity="true"/>
+            <columnOverride column="target_tag" javaType="com.vova.phoenix.model.po.json.TaskConfigTargetTag"/>
+            <columnOverride column="countries" javaType="java.util.List&lt;String&gt;"/>
+            <columnOverride column="extra" javaType="com.vova.phoenix.model.po.json.TaskConfigExtra"/>
         </table>
     </context>
 </generatorConfiguration>

@@ -11,6 +11,6 @@
     <result column="operator_id" jdbcType="INTEGER" property="operatorId" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
-    <result column="node_ids" jdbcType="LONGVARCHAR" property="nodeIds" />
+    <result column="node_id_list" jdbcType="LONGVARCHAR" property="nodeIdList" />
   </resultMap>
 </mapper>

@@ -1,13 +1,12 @@
 package com.vova.phoenix.model.po.entity;
 
-import lombok.Data;
-
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import com.vova.phoenix.model.po.json.TaskConfigExtra;
+import com.vova.phoenix.model.po.json.TaskConfigTargetTag;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
+import javax.persistence.*;
+import lombok.Data;
 
 @Data
 @Table(name = "task_config")
@@ -16,6 +15,7 @@ public class TaskConfig implements Serializable {
      * 自增id
      */
     @Id
+    @Column(name = "id")
     @GeneratedValue(generator = "JDBC")
     private Integer id;
 
@@ -58,16 +58,19 @@ public class TaskConfig implements Serializable {
     /**
      * 优先级
      */
+    @Column(name = "priority")
     private Integer priority;
 
     /**
      * 备注
      */
+    @Column(name = "remarks")
     private String remarks;
 
     /**
      * 执行周期
      */
+    @Column(name = "periods")
     private Integer periods;
 
     /**
@@ -83,13 +86,13 @@ public class TaskConfig implements Serializable {
     private Date lastTime;
 
     /**
-     * 有效期
+     * 有效期起始
      */
     @Column(name = "start_time")
     private Date startTime;
 
     /**
-     * 有效期
+     * 有效期结束
      */
     @Column(name = "end_time")
     private Date endTime;
@@ -97,6 +100,7 @@ public class TaskConfig implements Serializable {
     /**
      * 配置状态
      */
+    @Column(name = "status")
     private Integer status;
 
     /**
@@ -118,20 +122,22 @@ public class TaskConfig implements Serializable {
     private Date updateTime;
 
     /**
-     * 目标用户类型0-用户标签1-用户分层2-国家
+     * 推送标签
      */
     @Column(name = "target_tag")
-    private String targetTag;
+    private TaskConfigTargetTag targetTag;
 
     /**
-     * 推送时区
+     * 推送地区
      */
-    private String countries;
+    @Column(name = "countries")
+    private java.util.List<String> countries;
 
     /**
      * 其他属性
      */
-    private String extra;
+    @Column(name = "extra")
+    private TaskConfigExtra extra;
 
     private static final long serialVersionUID = 1L;
 
@@ -249,21 +255,5 @@ public class TaskConfig implements Serializable {
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();
-    }
-
-    public static TaskConfig defaultInstance() {
-        TaskConfig instance = new TaskConfig();
-        instance.appPlatform = new String("vova");
-        instance.messageTitle = new String("");
-        instance.messageBody = new String("");
-        instance.targetLink = new String("");
-        instance.imageLink = new String("");
-        instance.taskType = new Integer("0");
-        instance.priority = new Integer("0");
-        instance.remarks = new String("");
-        instance.periods = new Integer("0");
-        instance.status = new Integer("0");
-        instance.operatorId = new Integer("0");
-        return instance;
     }
 }

@@ -17,8 +17,8 @@ public class AdminUser2Operator implements Converter<AdminUser, Operator> {
         operator.setRealName(source.getRealName());
         operator.setAdmin(source.getAdmin());
         operator.setEmail(source.getEmail());
-        operator.setAppPlatformList(JacksonUtil.toList(source.getAppPlatformList(), String.class));
-        operator.setMessageTypeList(JacksonUtil.toList(source.getMessageTypeList(), String.class));
+        operator.setAppPlatformList(source.getAppPlatformList());
+        operator.setMessageTypeList(source.getMessageTypeList());
         return operator;
     }
 }

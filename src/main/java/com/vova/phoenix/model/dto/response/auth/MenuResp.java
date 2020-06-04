@@ -1,11 +1,11 @@
-package com.vova.phoenix.model.dto.response;
+package com.vova.phoenix.model.dto.response.auth;
 
 import lombok.Data;
 
 import java.util.List;
 
 @Data
-public class AuthMenuResp {
+public class MenuResp {
     /**
      * ID
      */
@@ -29,5 +29,5 @@ public class AuthMenuResp {
     /**
      * 子节点
      */
-    private List<AuthMenuResp> children;
+    private List<MenuResp> children;
 }

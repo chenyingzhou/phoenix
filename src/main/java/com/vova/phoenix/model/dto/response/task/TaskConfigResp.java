@@ -1,12 +1,15 @@
 
-package com.vova.phoenix.model.vo;
+package com.vova.phoenix.model.dto.response.task;
 
+import com.vova.phoenix.model.vo.TaskConfigExtra;
+import com.vova.phoenix.model.vo.TaskConfigTargetTag;
 import lombok.Data;
 
+import java.util.Date;
 import java.util.List;
 
 @Data
-public class TaskConfig {
+public class TaskConfigResp {
 
     private Integer id;
     private java.lang.String appPlatform;
@@ -18,13 +21,13 @@ public class TaskConfig {
     private Integer priority;
     private java.lang.String remarks;
     private Integer periods;
-    private java.lang.String expectedTime;
-    private java.lang.String lastTime;
-    private java.lang.String startTime;
-    private java.lang.String endTime;
+    private Date expectedTime;
+    private Date lastTime;
+    private Date startTime;
+    private Date endTime;
     private Integer status;
     private TaskConfigTargetTag targetTag;
-    private List<java.lang.String> countries;
+    private List<String> countries;
     private TaskConfigExtra extra;
 
 }

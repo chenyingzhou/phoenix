@@ -1,11 +1,12 @@
 
 package com.vova.phoenix.model.po.json;
 
+import java.io.Serializable;
 import java.util.List;
 import lombok.Data;
 
 @Data
-public class TaskConfigTargetTag {
+public class TaskConfigTargetTag implements Serializable {
 
     private java.lang.Integer filter;
     private java.lang.Integer baseTag;

@@ -3,8 +3,10 @@ package com.vova.phoenix.model.vo;
 
 import lombok.Data;
 
+import java.io.Serializable;
+
 @Data
-public class TaskConfigExtra {
+public class TaskConfigExtra implements Serializable {
 
     private String iosMin;
     private String iosMax;

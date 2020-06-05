@@ -5,11 +5,12 @@ import com.vova.phoenix.model.vo.TaskConfigExtra;
 import com.vova.phoenix.model.vo.TaskConfigTargetTag;
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
 @Data
-public class TaskConfigResp {
+public class TaskConfigResp implements Serializable {
 
     private Integer id;
     private java.lang.String appPlatform;

@@ -2,10 +2,11 @@ package com.vova.phoenix.model.dto.response.auth;
 
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.List;
 
 @Data
-public class MenuResp {
+public class MenuResp implements Serializable {
     /**
      * ID
      */

@@ -38,32 +38,38 @@ public class CachedBeanCopier {
         return destObj;
     }
 
-    public static <T> List<T> copy(List<?> srcObjList, Class<T> destClazz) {
+    public static <T> List<T> parseList(List<?> srcObjList, Class<T> destClazz) {
         List<T> destObjList = new ArrayList<>();
         for (Object srcObj : srcObjList) {
             T destObj;
             try {
-                destObj = destClazz.newInstance();
+                destObj = destClazz.getDeclaredConstructor().newInstance();
             } catch (Throwable e) {
                 e.printStackTrace();
-                return destObjList;
+                return new ArrayList<>();
             }
-            String key = genKey(srcObj.getClass(), destClazz);
-            BeanCopier copier;
-            if (!BEAN_COPIERS.containsKey(key)) {
-                copier = BeanCopier.create(srcObj.getClass(), destClazz, false);
-                BEAN_COPIERS.put(key, copier);
-            } else {
-                copier = BEAN_COPIERS.get(key);
+            destObjList.add(copy(srcObj, destObj));
+        }
+        return destObjList;
+    }
+
+    public static <T> List<T> parseList(List<?> srcObjList, Class<T> destClazz, Converter converter) {
+        List<T> destObjList = new ArrayList<>();
+        for (Object srcObj : srcObjList) {
+            T destObj;
+            try {
+                destObj = destClazz.getDeclaredConstructor().newInstance();
+            } catch (Throwable e) {
+                e.printStackTrace();
+                return new ArrayList<>();
             }
-            copier.copy(srcObj, destObj, null);
-            destObjList.add(destObj);
+            destObjList.add(copy(srcObj, destObj, converter));
         }
         return destObjList;
     }
 
     private static String genKey(Class<?> srcClazz, Class<?> destClazz) {
-        return srcClazz.getName() + destClazz.getName();
+        return srcClazz.getName() + ":" + destClazz.getName();
     }
 
 }

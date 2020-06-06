@@ -1,12 +1,10 @@
 package com.vova.phoenix.model.dto.request;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 import java.io.Serializable;
 
-@Setter
-@Getter
+@Data
 public class AuthLoginReq implements Serializable {
     private String username;
     private String password;

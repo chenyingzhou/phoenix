@@ -1,12 +1,15 @@
 package com.vova.phoenix.model.po.entity;
 
-import com.vova.phoenix.model.po.json.TaskConfigExtra;
-import com.vova.phoenix.model.po.json.TaskConfigTargetTag;
+import com.vova.phoenix.model.json.TaskConfigExtra;
+import com.vova.phoenix.model.json.TaskConfigTargetTag;
+import lombok.Data;
+
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
-import javax.persistence.*;
-import lombok.Data;
 
 @Data
 @Table(name = "task_config")

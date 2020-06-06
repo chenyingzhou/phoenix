@@ -1,8 +1,8 @@
 
 package com.vova.phoenix.model.dto.response.task;
 
-import com.vova.phoenix.model.vo.TaskConfigExtra;
-import com.vova.phoenix.model.vo.TaskConfigTargetTag;
+import com.vova.phoenix.model.json.TaskConfigExtra;
+import com.vova.phoenix.model.json.TaskConfigTargetTag;
 import lombok.Data;
 
 import java.io.Serializable;

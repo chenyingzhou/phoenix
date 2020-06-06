@@ -2,9 +2,6 @@ package com.vova.phoenix.controller;
 
 import com.vova.phoenix.constant.SessionConstant;
 import com.vova.phoenix.controller.handler.exception.BizException;
-import com.vova.phoenix.model.converter.P2V;
-import com.vova.phoenix.model.converter.beancopy.CachedBeanCopier;
-import com.vova.phoenix.model.dto.BaseListResponse;
 import com.vova.phoenix.model.dto.BaseResponse;
 import com.vova.phoenix.model.dto.request.AuthLoginReq;
 import com.vova.phoenix.model.dto.response.auth.LoginResp;
@@ -13,7 +10,7 @@ import com.vova.phoenix.model.dto.response.auth.ResourceResp;
 import com.vova.phoenix.model.po.entity.AdminUser;
 import com.vova.phoenix.model.po.entity.AdminUserNode;
 import com.vova.phoenix.model.vo.AuthMenu;
-import com.vova.phoenix.model.vo.Operator;
+import com.vova.phoenix.util.JacksonUtil;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -33,8 +30,7 @@ public class AuthController extends BaseController {
         var success = null != adminUser && authService.login(adminUser, password);
         if (success) {
             session.setAttribute(SessionConstant.ADMIN_USER, adminUser);
-            session.setAttribute(SessionConstant.OPERATOR, P2V.ADMIN_USER_2_OPERATOR.convert(adminUser));
-            resp.setCertificate(session.getId());
+            resp.setToken(session.getId());
             return sendData(resp);
         } else {
             session.setAttribute(SessionConstant.ADMIN_USER, null);
@@ -50,7 +46,7 @@ public class AuthController extends BaseController {
     }
 
     @GetMapping("/auth/menu")
-    public BaseListResponse<MenuResp> menu(HttpSession session) {
+    public BaseResponse<MenuResp> menu(HttpSession session) {
         var adminUser = (AdminUser)session.getAttribute(SessionConstant.ADMIN_USER);
         var adminUserNode = authService.findAdminUserNodeByUserId(adminUser.getId());
         if (null == adminUserNode) {
@@ -60,17 +56,16 @@ public class AuthController extends BaseController {
         var adminNodeIdList = adminUserNode.getNodeIdList();
         var adminNodeList = authService.findAdminNodeList(adminNodeIdList);
         var authMenuRoot = authService.adminNodeList2AuthMenuTree(adminNodeList, new AuthMenu());
-        var authMenuRespRoot = new MenuResp();
-        CachedBeanCopier.copy(authMenuRoot, authMenuRespRoot);
-        return sendList(authMenuRespRoot.getChildren());
+        var authMenuResp = JacksonUtil.transObject(authMenuRoot, MenuResp.class);
+        return sendData(authMenuResp);
     }
 
     @GetMapping("/auth/resource")
     public BaseResponse<ResourceResp> resource(HttpSession session) {
-        var operator = (Operator)session.getAttribute(SessionConstant.OPERATOR);
+        var adminUser = (AdminUser)session.getAttribute(SessionConstant.ADMIN_USER);
         var resp = new ResourceResp();
-        resp.setAppPlatformList(operator.getAppPlatformList());
-        resp.setMessageTypeList(operator.getMessageTypeList());
+        resp.setAppPlatformList(adminUser.getAppPlatformList());
+        resp.setMessageTypeList(adminUser.getMessageTypeList());
         return sendData(resp);
     }
 

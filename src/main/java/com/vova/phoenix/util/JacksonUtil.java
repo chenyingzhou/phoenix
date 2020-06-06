@@ -7,7 +7,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class JacksonUtil {
 
@@ -26,7 +25,7 @@ public class JacksonUtil {
 
     public static <T> T toObject(String jsonStr, Class<T> valueType) {
         try {
-            return threadLocal.get().readValue(jsonStr, valueType);
+            return getObjectMapper().readValue(jsonStr, valueType);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -36,7 +35,7 @@ public class JacksonUtil {
     public static <T> List<T> toList(String jsonStr, Class<T> valueType) {
         var valueList = new ArrayList<T>();
         try {
-            var objectMapper = threadLocal.get();
+            var objectMapper = getObjectMapper();
             var objList = objectMapper.readValue(jsonStr, new TypeReference<List<Object>>() {
             });
             for (Object obj : objList) {
@@ -50,13 +49,21 @@ public class JacksonUtil {
         return valueList;
     }
 
-    public static String toJSon(Object object) {
+    public static String toJson(Object object) {
         try {
-            return threadLocal.get().writeValueAsString(object);
+            return getObjectMapper().writeValueAsString(object);
         } catch (Exception e) {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public static <T> T transObject(Object object, Class<T> valueType) {
+        return toObject(toJson(object), valueType);
+    }
+
+    public static <T> List<T> transList(List<?> objectList, Class<T> valueType) {
+        return toList(toJson(objectList), valueType);
     }
 
 }

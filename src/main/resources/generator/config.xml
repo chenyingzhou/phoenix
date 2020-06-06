@@ -67,9 +67,9 @@
         </table>
         <table tableName="task_config">
             <generatedKey column="id" sqlStatement="JDBC" identity="true"/>
-            <columnOverride column="target_tag" javaType="com.vova.phoenix.model.po.json.TaskConfigTargetTag"/>
+            <columnOverride column="target_tag" javaType="com.vova.phoenix.model.json.TaskConfigTargetTag"/>
             <columnOverride column="countries" javaType="java.util.List&lt;String&gt;"/>
-            <columnOverride column="extra" javaType="com.vova.phoenix.model.po.json.TaskConfigExtra"/>
+            <columnOverride column="extra" javaType="com.vova.phoenix.model.json.TaskConfigExtra"/>
         </table>
     </context>
 </generatorConfiguration>

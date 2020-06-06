@@ -1,5 +1,5 @@
 
-package com.vova.phoenix.model.vo;
+package com.vova.phoenix.model.json;
 
 import lombok.Data;
 

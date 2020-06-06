@@ -7,8 +7,8 @@
         <typeHandler handler="com.vova.phoenix.model.po.typehandler.JsonTypeHandler"
                      javaType="java.util.List"/>
         <typeHandler handler="com.vova.phoenix.model.po.typehandler.JsonTypeHandler"
-                     javaType="com.vova.phoenix.model.po.json.TaskConfigExtra"/>
+                     javaType="com.vova.phoenix.model.json.TaskConfigExtra"/>
         <typeHandler handler="com.vova.phoenix.model.po.typehandler.JsonTypeHandler"
-                     javaType="com.vova.phoenix.model.po.json.TaskConfigTargetTag"/>
+                     javaType="com.vova.phoenix.model.json.TaskConfigTargetTag"/>
     </typeHandlers>
 </configuration>

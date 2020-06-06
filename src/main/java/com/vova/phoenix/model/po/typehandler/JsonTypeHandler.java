@@ -40,7 +40,7 @@ public class JsonTypeHandler<T> extends BaseTypeHandler<T> {
     }
 
     private String toJson(T object) {
-        return JacksonUtil.toJSon(object);
+        return JacksonUtil.toJson(object);
     }
 
     private T toObject(String content, Class<T> clazz) {

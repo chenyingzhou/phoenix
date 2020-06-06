@@ -9,8 +9,6 @@ import com.vova.phoenix.util.JacksonUtil;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
-
 @RestController
 public class TaskController extends BaseController {
     @GetMapping("/task/task-config")
@@ -18,7 +16,7 @@ public class TaskController extends BaseController {
         var taskConfig = new TaskConfig();
         CachedBeanCopier.copy(taskConfigFilterReq, taskConfig);
         var taskConfigList = taskService.findTaskConfigList(taskConfig);
-        var taskConfigRespList = JacksonUtil.toList(JacksonUtil.toJSon(taskConfigList), TaskConfigResp.class);
+        var taskConfigRespList = JacksonUtil.toList(JacksonUtil.toJson(taskConfigList), TaskConfigResp.class);
         return this.sendList(taskConfigRespList);
     }
 

@@ -15,6 +15,13 @@ spring:
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+0
+  kafka:
+    bootstrap-servers: 127.0.0.1:9092
+    consumer:
+      group-id: maxwell_source
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
 
 mybatis:
   config-location: classpath:mybatis.xml

@@ -43,4 +43,14 @@ public class DbTaskService implements TaskService {
         example.createCriteria().andEqualTo(taskConfig);
         return taskConfigMapper.selectByExample(example);
     }
+
+    @Override
+    public boolean insertTaskConfig(TaskConfig taskConfig) {
+        return taskConfigMapper.insert(taskConfig) > 0;
+    }
+
+    @Override
+    public boolean updateTaskConfig(TaskConfig taskConfig) {
+        return taskConfigMapper.updateByPrimaryKey(taskConfig) > 0;
+    }
 }

@@ -1,55 +1,57 @@
 package com.vova.phoenix.kafka;
 
+import com.vova.phoenix.model.po.entity.TaskConfig;
+import com.vova.phoenix.model.vo.maxwell.Message;
+import com.vova.phoenix.service.TaskService;
+import com.vova.phoenix.util.JacksonUtil;
+import com.vova.phoenix.util.MapUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
 import javax.sql.DataSource;
 
 @Component
+@Slf4j
 public class BinlogConsumer implements Consumer {
 
     protected final DataSource dataSource;
 
     protected final JdbcTemplate jdbcTemplate;
 
+    @Resource
+    protected TaskService taskService;
+
     protected BinlogConsumer(@Autowired DataSource dataSource, @Autowired JdbcTemplate jdbcTemplate) {
         this.dataSource = dataSource;
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    @KafkaListener(topics = "maxwell", groupId = "")
-    public void processAppInstallRecord(String content) {
-        System.out.println(content);
-        this.save(content, new String[]{"id"});
-    }
-
-    public void save(String binlogJson, String[] condition) {
-        var fieldStr = "";
-        var type = "";
-        var sqlWhere = "";
-        var table = "";
-
-        String sql;
-        switch (type) {
-            case "update":
-                if (!"".equals(sqlWhere)) {
-                    sql = "update `" + table + "` set " + fieldStr + sqlWhere;
-                    jdbcTemplate.update(sql);
-                }
-                break;
-            case "insert":
-                sql = "insert ignore into `" + table + "` set " + fieldStr;
-                jdbcTemplate.update(sql);
-                break;
-            case "delete":
-                if (!"".equals(sqlWhere)) {
-                    sql = "delete from `" + table + "` " + sqlWhere;
-                    jdbcTemplate.update(sql);
-                }
-                break;
-            default:
+    @KafkaListener(topics = {"${maxwell.topics.task_config}"}, groupId = "${maxwell.group-id}")
+    public void processBinlog(String content) {
+        try {
+            var maxwellMessage = JacksonUtil.toObject(content, Message.class);
+            assert maxwellMessage != null;
+            var table = maxwellMessage.getTable();
+            var insert = maxwellMessage.getType().equals("insert");
+            var lowerCamelMap = MapUtil.toLowerCamelKeys(maxwellMessage.getData());
+            switch (table) {
+                case "task_config":
+                    var taskConfig = JacksonUtil.transObject(lowerCamelMap, TaskConfig.class);
+                    if (insert) {
+                        taskService.insertTaskConfig(taskConfig);
+                    } else {
+                        taskService.updateTaskConfig(taskConfig);
+                    }
+                    System.out.println("hello");
+                default:
+            }
+        } catch (Throwable $e) {
+            log.error("something wrong with binlog: " + content);
         }
     }
+
 }

@@ -32,4 +32,15 @@ public class TaskServiceImpl implements TaskService {
     public List<TaskConfig> findTaskConfigList(TaskConfig taskConfig) {
         return dbService.findTaskConfigList(taskConfig);
     }
+
+    @Override
+    public boolean insertTaskConfig(TaskConfig taskConfig) {
+        return dbService.insertTaskConfig(taskConfig);
+    }
+
+    @Override
+    public boolean updateTaskConfig(TaskConfig taskConfig) {
+        return dbService.updateTaskConfig(taskConfig);
+    }
+
 }

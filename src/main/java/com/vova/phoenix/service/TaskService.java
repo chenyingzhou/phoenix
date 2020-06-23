@@ -10,4 +10,8 @@ public interface TaskService {
     public List<TaskConfig> findTaskConfigList(List<Integer> idList);
 
     public List<TaskConfig> findTaskConfigList(TaskConfig taskConfig);
+
+    public boolean insertTaskConfig(TaskConfig taskConfig);
+
+    public boolean updateTaskConfig(TaskConfig taskConfig);
 }

@@ -37,3 +37,8 @@ management:
       show-details: always
     shutdown:
       enabled: true
+
+maxwell:
+  group-id: maxwell_source
+  topics:
+    task_config: maxwell_maxwell_source_task_config

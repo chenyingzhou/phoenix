@@ -1,0 +1,14 @@
+{
+  "properties": [
+    {
+      "name": "maxwell.group-id",
+      "type": "java.lang.String",
+      "description": "Description for maxwell.group-id."
+    },
+    {
+      "name": "maxwell.topics.task_config",
+      "type": "java.lang.String",
+      "description": "Description for maxwell.topics.task_config."
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.phoenix.message.mapper.TaskConfigMapper">
+  <resultMap id="BaseResultMap" type="com.phoenix.message.model.po.entity.TaskConfig">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="app_platform" jdbcType="VARCHAR" property="appPlatform" />
+    <result column="message_title" jdbcType="VARCHAR" property="messageTitle" />
+    <result column="message_body" jdbcType="VARCHAR" property="messageBody" />
+    <result column="target_link" jdbcType="VARCHAR" property="targetLink" />
+    <result column="image_link" jdbcType="VARCHAR" property="imageLink" />
+    <result column="task_type" jdbcType="TINYINT" property="taskType" />
+    <result column="priority" jdbcType="INTEGER" property="priority" />
+    <result column="remarks" jdbcType="VARCHAR" property="remarks" />
+    <result column="periods" jdbcType="TINYINT" property="periods" />
+    <result column="expected_time" jdbcType="TIMESTAMP" property="expectedTime" />
+    <result column="last_time" jdbcType="TIMESTAMP" property="lastTime" />
+    <result column="start_time" jdbcType="TIMESTAMP" property="startTime" />
+    <result column="end_time" jdbcType="TIMESTAMP" property="endTime" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="operator_id" jdbcType="INTEGER" property="operatorId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="target_tag" jdbcType="LONGVARCHAR" property="targetTag" />
+    <result column="countries" jdbcType="LONGVARCHAR" property="countries" />
+    <result column="extra" jdbcType="LONGVARCHAR" property="extra" />
+  </resultMap>
+</mapper>

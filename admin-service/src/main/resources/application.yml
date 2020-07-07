@@ -1,9 +1,9 @@
 server:
-  port: 8081
+  port: 9110
 
 spring:
   application:
-    name: admin-server
+    name: admin-service
   cloud:
     nacos:
 #      config:

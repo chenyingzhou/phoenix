@@ -1,13 +1,11 @@
 server:
-  port: 9110
+  port: 9111
 
 spring:
   application:
-    name: admin-service
+    name: sync-service
   cloud:
     nacos:
-#      config:
-#        server-addr: 127.0.0.1:8848
       discovery:
         server-addr: 127.0.0.1:8848
   datasource:
@@ -15,14 +13,16 @@ spring:
     username: root
     password: root
     driver-class-name: com.mysql.cj.jdbc.Driver
-  redis:
-    host: 127.0.0.1
-    port: 6379
-  session:
-    store-type: redis
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+0
+  kafka:
+    bootstrap-servers: 127.0.0.1:9092
+    consumer:
+      group-id: maxwell_source
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
 
 mybatis:
   config-location: classpath:mybatis.xml
@@ -38,3 +38,8 @@ management:
       show-details: always
     shutdown:
       enabled: true
+
+maxwell:
+  group-id: maxwell_source
+  topics:
+    task_config: maxwell_maxwell_source_task_config

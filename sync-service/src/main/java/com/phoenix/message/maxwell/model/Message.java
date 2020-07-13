@@ -1,5 +1,5 @@
 
-package com.phoenix.message.model.vo.maxwell;
+package com.phoenix.message.maxwell.model;
 
 import lombok.Data;
 

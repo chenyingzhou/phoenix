@@ -11,7 +11,7 @@ import java.util.TimeZone;
 @SpringBootApplication
 @EnableDiscoveryClient
 @MapperScan("com.phoenix.message.mapper")
-public class PhoenixApplication {
+public class AdminApplication {
 
     @PostConstruct
     void started() {
@@ -19,7 +19,7 @@ public class PhoenixApplication {
     }
 
     public static void main(String[] args) {
-        SpringApplication.run(PhoenixApplication.class, args);
+        SpringApplication.run(AdminApplication.class, args);
     }
 
 }

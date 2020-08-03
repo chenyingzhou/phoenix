@@ -1,7 +1,7 @@
-package com.phoenix.message.controller.handler;
+package com.phoenix.message.web.controller.handler;
 
-import com.phoenix.message.controller.handler.exception.BizException;
-import com.phoenix.message.model.dto.BaseResponse;
+import com.phoenix.message.web.controller.handler.exception.BizException;
+import com.phoenix.message.common.model.dto.BaseResponse;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 

@@ -20,7 +20,7 @@ public class TaskConfigConsumer implements Consumer {
     @Resource
     protected TaskService taskService;
 
-    @KafkaListener(topics = {"${sync.topics.task_config}"}, groupId = "${sync.group-id}")
+    @KafkaListener(topics = {"${maxwell.topics.task_config}"}, groupId = "${maxwell.group-id}")
     public void processMessage(String content) {
         try {
             var maxwellMessage = JacksonUtil.toObject(content, Message.class);

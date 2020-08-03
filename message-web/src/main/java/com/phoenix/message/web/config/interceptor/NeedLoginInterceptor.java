@@ -1,7 +1,7 @@
-package com.phoenix.message.config.interceptor;
+package com.phoenix.message.web.config.interceptor;
 
-import com.phoenix.message.constant.SessionConstant;
-import com.phoenix.message.model.po.entity.AdminUser;
+import com.phoenix.message.common.constant.SessionConstant;
+import com.phoenix.message.common.model.po.entity.AdminUser;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.HandlerInterceptor;
 

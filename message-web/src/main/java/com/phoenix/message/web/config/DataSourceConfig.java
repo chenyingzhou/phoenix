@@ -1,4 +1,4 @@
-package com.phoenix.message.config;
+package com.phoenix.message.web.config;
 
 import com.zaxxer.hikari.HikariDataSource;
 import org.springframework.beans.factory.annotation.Autowired;

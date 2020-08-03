@@ -1,9 +1,11 @@
-package com.phoenix.message.controller;
+package com.phoenix.message.web.controller;
 
-import com.phoenix.message.model.dto.BaseListResponse;
-import com.phoenix.message.model.dto.BaseResponse;
-import com.phoenix.message.service.AuthService;
-import com.phoenix.message.service.TaskService;
+import com.phoenix.message.common.model.dto.BaseListResponse;
+import com.phoenix.message.common.model.dto.BaseResponse;
+import com.phoenix.message.common.service.AuthService;
+import com.phoenix.message.common.service.TaskService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;

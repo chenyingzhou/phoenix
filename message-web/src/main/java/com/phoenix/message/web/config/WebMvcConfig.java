@@ -1,6 +1,6 @@
-package com.phoenix.message.config;
+package com.phoenix.message.web.config;
 
-import com.phoenix.message.config.interceptor.NeedLoginInterceptor;
+import com.phoenix.message.web.config.interceptor.NeedLoginInterceptor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;

@@ -1,4 +1,4 @@
-package com.phoenix.message.controller.handler.exception;
+package com.phoenix.message.web.controller.handler.exception;
 
 public class BizException extends RuntimeException {
     /**

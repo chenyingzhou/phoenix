@@ -4,16 +4,15 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.phoenix.message</groupId>
+    <groupId>com.phoenix</groupId>
     <artifactId>message</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <modules>
-        <module>common</module>
-        <module>sync-service</module>
-        <module>gateway-service</module>
-        <module>admin-service</module>
+        <module>message-common</module>
+        <module>message-sync</module>
+        <module>message-web</module>
     </modules>
 
     <parent>

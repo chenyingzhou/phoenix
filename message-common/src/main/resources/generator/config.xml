@@ -45,13 +45,13 @@
         </javaTypeResolver>
 
         <!-- 实体 -->
-        <javaModelGenerator targetPackage="com.phoenix.message.model.po.entity" targetProject="src/main/java"/>
+        <javaModelGenerator targetPackage="com.phoenix.message.common.model.po.entity" targetProject="src/main/java"/>
 
         <!-- mapper.xml -->
         <sqlMapGenerator targetPackage="mapper" targetProject="src/main/resources"/>
 
         <!-- mapper接口 -->
-        <javaClientGenerator targetPackage="com.phoenix.message.mapper" targetProject="src/main/java" type="XMLMAPPER"/>
+        <javaClientGenerator targetPackage="com.phoenix.message.common.mapper" targetProject="src/main/java" type="XMLMAPPER"/>
 
         <table tableName="admin_user">
             <generatedKey column="id" sqlStatement="JDBC" identity="true"/>

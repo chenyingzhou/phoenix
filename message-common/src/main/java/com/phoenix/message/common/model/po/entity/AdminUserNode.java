@@ -51,7 +51,7 @@ public class AdminUserNode implements Serializable {
      * 节点id
      */
     @Column(name = "node_id_list")
-    private List<Integer> nodeIdList;
+    private java.util.List<Integer> nodeIdList;
 
     private static final long serialVersionUID = 1L;
 

@@ -2,14 +2,11 @@ package com.phoenix.message.common.model.po.entity;
 
 import com.phoenix.message.common.model.json.TaskConfigExtra;
 import com.phoenix.message.common.model.json.TaskConfigTargetTag;
-import lombok.Data;
-
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
+import javax.persistence.*;
+import lombok.Data;
 
 @Data
 @Table(name = "task_config")

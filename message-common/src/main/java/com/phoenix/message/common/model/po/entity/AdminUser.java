@@ -75,13 +75,13 @@ public class AdminUser implements Serializable {
      * vova/airyclub
      */
     @Column(name = "app_platform_list")
-    private List<String> appPlatformList;
+    private java.util.List<String> appPlatformList;
 
     /**
      * push/coupon
      */
     @Column(name = "message_type_list")
-    private List<String> messageTypeList;
+    private java.util.List<String> messageTypeList;
 
     private static final long serialVersionUID = 1L;
 

@@ -14,6 +14,7 @@
         <module>message-common</module>
         <module>message-sync</module>
         <module>message-web</module>
+        <module>message-auth-service</module>
     </modules>
 
     <parent>

@@ -10,9 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/user")
 public class UserController {
     @GetMapping("/hello")
-    @Secured("ROLE_ADMIN")
     public Object getCurrentUser(Authentication authentication) {
 //        return "hello";
-        return authentication.getPrincipal();
+        return "test";
     }
 }

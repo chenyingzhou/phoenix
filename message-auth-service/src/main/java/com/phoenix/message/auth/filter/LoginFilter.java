@@ -36,7 +36,7 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
 
     @Override
     protected void successfulAuthentication(HttpServletRequest req, HttpServletResponse res, FilterChain chain, Authentication auth) {
-        User user = (User)auth.getPrincipal();
+        User user = (User) auth.getPrincipal();
         HttpSession session = req.getSession();
         session.setAttribute(SessionConstant.ADMIN_USER, user);
     }

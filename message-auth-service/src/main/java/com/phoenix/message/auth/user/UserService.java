@@ -1,8 +1,7 @@
-package com.phoenix.message.auth;
+package com.phoenix.message.auth.user;
 
 import com.phoenix.message.common.model.po.entity.AdminUser;
 import com.phoenix.message.common.service.AuthService;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

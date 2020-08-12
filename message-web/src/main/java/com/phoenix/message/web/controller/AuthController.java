@@ -22,33 +22,10 @@ import java.util.ArrayList;
 
 @RestController
 public class AuthController extends BaseController {
-    @PostMapping("/auth/login")
-    public BaseResponse<LoginResp> login(@RequestBody AuthLoginReq authLoginReq, HttpSession session) {
-        var username = authLoginReq.getUsername();
-        var password = authLoginReq.getPassword();
-        var resp = new LoginResp();
-        var adminUser = authService.findAdminUserByUsername(username);
-        var success = null != adminUser && authService.login(adminUser, password);
-        if (success) {
-            session.setAttribute(SessionConstant.ADMIN_USER, adminUser);
-            resp.setToken(session.getId());
-            return sendData(resp);
-        } else {
-            session.setAttribute(SessionConstant.ADMIN_USER, null);
-            throw new BizException("账号或密码错误");
-        }
-    }
-
-    @PostMapping("/auth/logout")
-    public BaseResponse<Object> logout(HttpSession session) {
-        session.removeAttribute(SessionConstant.ADMIN_USER);
-        session.removeAttribute(SessionConstant.OPERATOR);
-        return sendOk("退出成功");
-    }
 
     @GetMapping("/auth/menu")
     public BaseResponse<MenuResp> menu(HttpSession session) {
-        var adminUser = (AdminUser)session.getAttribute(SessionConstant.ADMIN_USER);
+        var adminUser = (AdminUser)session.getAttribute(SessionConstant.USER);
         var adminUserNode = authService.findAdminUserNodeByUserId(adminUser.getId());
         if (null == adminUserNode) {
             adminUserNode = new AdminUserNode();
@@ -63,7 +40,7 @@ public class AuthController extends BaseController {
 
     @GetMapping("/auth/resource")
     public BaseResponse<ResourceResp> resource(HttpSession session) {
-        var adminUser = (AdminUser)session.getAttribute(SessionConstant.ADMIN_USER);
+        var adminUser = (AdminUser)session.getAttribute(SessionConstant.USER);
         var resp = new ResourceResp();
         resp.setAppPlatformList(adminUser.getAppPlatformList());
         resp.setMessageTypeList(adminUser.getMessageTypeList());

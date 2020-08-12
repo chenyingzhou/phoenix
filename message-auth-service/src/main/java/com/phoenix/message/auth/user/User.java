@@ -1,4 +1,4 @@
-package com.phoenix.message.auth;
+package com.phoenix.message.auth.user;
 
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;

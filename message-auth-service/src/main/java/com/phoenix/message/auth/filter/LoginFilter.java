@@ -1,7 +1,7 @@
 package com.phoenix.message.auth.filter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.phoenix.message.auth.User;
+import com.phoenix.message.auth.user.User;
 import com.phoenix.message.common.constant.SessionConstant;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -38,6 +38,6 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
     protected void successfulAuthentication(HttpServletRequest req, HttpServletResponse res, FilterChain chain, Authentication auth) {
         User user = (User) auth.getPrincipal();
         HttpSession session = req.getSession();
-        session.setAttribute(SessionConstant.ADMIN_USER, user);
+        session.setAttribute(SessionConstant.USER, user);
     }
 }

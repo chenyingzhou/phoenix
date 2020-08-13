@@ -37,7 +37,6 @@ public class AuthenticationFilter extends BasicAuthenticationFilter {
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
         chain.doFilter(request, response);
-
     }
 
 }

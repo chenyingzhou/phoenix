@@ -1,11 +1,13 @@
 package com.phoenix.message.common.service.impl;
 
+import com.phoenix.message.common.constant.StatusConstant;
+import com.phoenix.message.common.entity.AuthRole;
+import com.phoenix.message.common.entity.AuthUser;
 import com.phoenix.message.common.model.po.entity.AdminNode;
 import com.phoenix.message.common.model.po.entity.AdminUser;
 import com.phoenix.message.common.model.po.entity.AdminUserNode;
 import com.phoenix.message.common.model.vo.AuthMenu;
 import com.phoenix.message.common.service.AuthService;
-import com.phoenix.message.common.constant.StatusConstant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Primary;
@@ -22,6 +24,21 @@ public class AuthServiceImpl implements AuthService {
     @Autowired
     public AuthServiceImpl(@Qualifier("dbAuthService") AuthService dbService) {
         this.dbService = dbService;
+    }
+
+    @Override
+    public AuthUser loadUserByUsername(String username) {
+        return dbService.loadUserByUsername(username);
+    }
+
+    @Override
+    public List<AuthRole> findAllRole() {
+        return dbService.findAllRole();
+    }
+
+    @Override
+    public List<AuthRole> findRoleListByUserId(Integer userId) {
+        return dbService.findRoleListByUserId(userId);
     }
 
     @Override

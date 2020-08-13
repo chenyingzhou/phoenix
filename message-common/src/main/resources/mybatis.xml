@@ -4,11 +4,11 @@
                 "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
     <typeHandlers>
-        <typeHandler handler="com.phoenix.message.common.model.po.typehandler.JsonTypeHandler"
+        <typeHandler handler="com.phoenix.message.common.typehandler.JsonTypeHandler"
                      javaType="java.util.List"/>
-        <typeHandler handler="com.phoenix.message.common.model.po.typehandler.JsonTypeHandler"
-                     javaType="com.phoenix.message.common.model.json.TaskConfigExtra"/>
-        <typeHandler handler="com.phoenix.message.common.model.po.typehandler.JsonTypeHandler"
-                     javaType="com.phoenix.message.common.model.json.TaskConfigTargetTag"/>
+        <typeHandler handler="com.phoenix.message.common.typehandler.JsonTypeHandler"
+                     javaType="com.phoenix.message.common.entity.json.TaskConfigExtra"/>
+        <typeHandler handler="com.phoenix.message.common.typehandler.JsonTypeHandler"
+                     javaType="com.phoenix.message.common.entity.json.TaskConfigTargetTag"/>
     </typeHandlers>
 </configuration>

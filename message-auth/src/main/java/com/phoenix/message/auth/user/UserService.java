@@ -2,7 +2,7 @@ package com.phoenix.message.auth.user;
 
 import com.phoenix.message.common.entity.AuthRole;
 import com.phoenix.message.common.entity.AuthUser;
-import com.phoenix.message.common.model.converter.beancopy.CachedBeanCopier;
+import com.phoenix.message.common.beanutil.CachedBeanCopier;
 import com.phoenix.message.common.service.AuthService;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

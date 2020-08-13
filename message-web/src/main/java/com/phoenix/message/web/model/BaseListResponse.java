@@ -1,4 +1,4 @@
-package com.phoenix.message.common.model.dto;
+package com.phoenix.message.web.model;
 
 import lombok.Data;
 

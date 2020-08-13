@@ -1,5 +1,5 @@
 
-package com.phoenix.message.common.model.json;
+package com.phoenix.message.common.entity.json;
 
 import lombok.Data;
 

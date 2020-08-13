@@ -1,4 +1,4 @@
-package com.phoenix.message.common.model.converter.beancopy;
+package com.phoenix.message.common.beanutil;
 
 import org.springframework.cglib.beans.BeanCopier;
 import org.springframework.cglib.core.Converter;

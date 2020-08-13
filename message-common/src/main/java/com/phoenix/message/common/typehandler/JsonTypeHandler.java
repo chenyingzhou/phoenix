@@ -1,4 +1,4 @@
-package com.phoenix.message.common.model.po.typehandler;
+package com.phoenix.message.common.typehandler;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.phoenix.message.common.util.JacksonUtil;

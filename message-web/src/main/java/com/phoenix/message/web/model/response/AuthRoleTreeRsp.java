@@ -5,7 +5,7 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class AuthRoleTree {
+public class AuthRoleTreeRsp {
 
     private Integer id;
 
@@ -13,5 +13,5 @@ public class AuthRoleTree {
 
     private String code;
 
-    private List<AuthRoleTree> children;
+    private List<AuthRoleTreeRsp> children;
 }

@@ -1,6 +1,8 @@
 package com.phoenix.message.common.service.impl;
 
+import com.phoenix.message.common.beanutil.CachedBeanCopier;
 import com.phoenix.message.common.dao.AuthDao;
+import com.phoenix.message.common.dto.auth.AuthRoleTree;
 import com.phoenix.message.common.entity.AuthRole;
 import com.phoenix.message.common.entity.AuthUser;
 import com.phoenix.message.common.entity.AuthUserRole;
@@ -31,13 +33,29 @@ public class AuthServiceImpl implements AuthService {
     }
 
     @Override
+    public AuthRoleTree authRoleListToTree(List<AuthRole> authRoleList, AuthRoleTree authRoleTree) {
+        if (authRoleTree.getId() == null) {
+            authRoleTree.setId(0);
+        }
+        List<AuthRole> childAuthRoleList = authRoleList.stream()
+                .filter(authRole -> authRole.getParentId().equals(authRoleTree.getId()))
+                .collect(Collectors.toList());
+        for (AuthRole authRole : childAuthRoleList) {
+            AuthRoleTree childAuthRoleTree = CachedBeanCopier.copy(authRole, new AuthRoleTree());
+            authRoleListToTree(authRoleList, childAuthRoleTree);
+            authRoleTree.getChildren().add(childAuthRoleTree);
+        }
+        return authRoleTree;
+    }
+
+    @Override
     public List<AuthRole> findRoleListByUserId(Integer userId) {
         AuthUserRole authUserRoleExample = new AuthUserRole();
         authUserRoleExample.setUserId(userId);
 
         List<AuthUserRole> authUserRoleList = authDao.select(authUserRoleExample);
         List<Integer> authRoleIdList = authUserRoleList.stream()
-                .map(AuthUserRole::getId)
+                .map(AuthUserRole::getRoleId)
                 .collect(Collectors.toList());
 
         List<AuthRole> allAuthRole = findAllRole();

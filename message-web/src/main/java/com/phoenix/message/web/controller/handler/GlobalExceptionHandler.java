@@ -1,6 +1,6 @@
 package com.phoenix.message.web.controller.handler;
 
-import com.phoenix.message.common.model.dto.BaseResponse;
+import com.phoenix.message.web.model.BaseResponse;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 

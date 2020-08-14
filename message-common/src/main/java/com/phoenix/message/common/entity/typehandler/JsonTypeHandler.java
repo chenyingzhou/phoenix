@@ -1,6 +1,5 @@
-package com.phoenix.message.common.typehandler;
+package com.phoenix.message.common.entity.typehandler;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.phoenix.message.common.util.JacksonUtil;
 import org.apache.ibatis.type.BaseTypeHandler;
 import org.apache.ibatis.type.JdbcType;
@@ -11,7 +10,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class JsonTypeHandler<T> extends BaseTypeHandler<T> {
-    private static final ObjectMapper mapper = new ObjectMapper();
     private final Class<T> clazz;
 
     public JsonTypeHandler(Class<T> clazz) {

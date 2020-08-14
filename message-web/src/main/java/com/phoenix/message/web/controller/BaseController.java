@@ -1,11 +1,8 @@
 package com.phoenix.message.web.controller;
 
-import com.phoenix.message.common.model.dto.BaseListResponse;
-import com.phoenix.message.common.model.dto.BaseResponse;
 import com.phoenix.message.common.service.AuthService;
-import com.phoenix.message.common.service.TaskService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
+import com.phoenix.message.web.model.BaseListResponse;
+import com.phoenix.message.web.model.BaseResponse;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
@@ -15,9 +12,6 @@ import java.util.List;
 public abstract class BaseController {
     @Resource
     protected AuthService authService;
-
-    @Resource
-    protected TaskService taskService;
 
     protected <T> BaseResponse<T> sendData(T data) {
         var resp = new BaseResponse<T>();

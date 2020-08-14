@@ -1,12 +1,8 @@
 package com.phoenix.message.common.dao.impl;
 
 import com.phoenix.message.common.dao.AuthDao;
-import com.phoenix.message.common.entity.AuthRole;
-import com.phoenix.message.common.entity.AuthUser;
-import com.phoenix.message.common.entity.AuthUserRole;
-import com.phoenix.message.common.mapper.auth.AuthRoleMapper;
-import com.phoenix.message.common.mapper.auth.AuthUserMapper;
-import com.phoenix.message.common.mapper.auth.AuthUserRoleMapper;
+import com.phoenix.message.common.entity.*;
+import com.phoenix.message.common.mapper.auth.*;
 import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.entity.Example;
 
@@ -23,6 +19,12 @@ public class AuthDaoImpl implements AuthDao {
 
     @Resource
     private AuthUserRoleMapper authUserRoleMapper;
+
+    @Resource
+    private AuthResourceMapper authResourceMapper;
+
+    @Resource
+    private AuthUserResourceMapper authUserResourceMapper;
 
     @Override
     public AuthUser selectOne(AuthUser authUser) {
@@ -73,5 +75,39 @@ public class AuthDaoImpl implements AuthDao {
         Example example = new Example(AuthUserRole.class);
         example.createCriteria().andIn(column, values);
         return authUserRoleMapper.selectByExample(example);
+    }
+
+    @Override
+    public AuthResource selectOne(AuthResource authResource) {
+        return authResourceMapper.selectOne(authResource);
+    }
+
+    @Override
+    public List<AuthResource> select(AuthResource authResource) {
+        return authResourceMapper.select(authResource);
+    }
+
+    @Override
+    public List<AuthResource> selectAuthResourceList(String column, List<?> values) {
+        Example example = new Example(AuthResource.class);
+        example.createCriteria().andIn(column, values);
+        return authResourceMapper.selectByExample(example);
+    }
+
+    @Override
+    public AuthUserResource selectOne(AuthUserResource authUserResource) {
+        return authUserResourceMapper.selectOne(authUserResource);
+    }
+
+    @Override
+    public List<AuthUserResource> select(AuthUserResource authUserResource) {
+        return authUserResourceMapper.select(authUserResource);
+    }
+
+    @Override
+    public List<AuthUserResource> selectAuthUserResourceList(String column, List<?> values) {
+        Example example = new Example(AuthUserResource.class);
+        example.createCriteria().andIn(column, values);
+        return authUserResourceMapper.selectByExample(example);
     }
 }

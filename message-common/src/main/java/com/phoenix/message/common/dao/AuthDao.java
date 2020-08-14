@@ -1,8 +1,6 @@
 package com.phoenix.message.common.dao;
 
-import com.phoenix.message.common.entity.AuthRole;
-import com.phoenix.message.common.entity.AuthUser;
-import com.phoenix.message.common.entity.AuthUserRole;
+import com.phoenix.message.common.entity.*;
 
 import java.util.List;
 
@@ -25,5 +23,17 @@ public interface AuthDao {
     List<AuthUserRole> select(AuthUserRole authUserRole);
 
     List<AuthUserRole> selectAuthUserRoleList(String column, List<?> values);
+
+    AuthResource selectOne(AuthResource authResource);
+
+    List<AuthResource> select(AuthResource authResource);
+
+    List<AuthResource> selectAuthResourceList(String column, List<?> values);
+
+    AuthUserResource selectOne(AuthUserResource authUserResource);
+
+    List<AuthUserResource> select(AuthUserResource authUserResource);
+
+    List<AuthUserResource> selectAuthUserResourceList(String column, List<?> values);
 
 }

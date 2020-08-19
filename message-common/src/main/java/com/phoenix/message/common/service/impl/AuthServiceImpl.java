@@ -3,14 +3,13 @@ package com.phoenix.message.common.service.impl;
 import com.phoenix.message.common.beanutil.CachedBeanCopier;
 import com.phoenix.message.common.dao.AuthDao;
 import com.phoenix.message.common.dto.auth.AuthRoleTree;
-import com.phoenix.message.common.entity.AuthRole;
-import com.phoenix.message.common.entity.AuthUser;
-import com.phoenix.message.common.entity.AuthUserRole;
+import com.phoenix.message.common.entity.*;
 import com.phoenix.message.common.service.AuthService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
@@ -62,6 +61,27 @@ public class AuthServiceImpl implements AuthService {
         return allAuthRole.stream()
                 .filter(authRole -> authRoleIdList.contains(authRole.getId()))
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<AuthResource> findAllResource() {
+        return authDao.select(new AuthResource());
+    }
+
+    @Override
+    public Map<String, List<AuthResource>> findResourceMapByUserId(Integer userId) {
+        AuthUserResource authUserResourceExample = new AuthUserResource();
+        authUserResourceExample.setUserId(userId);
+
+        List<AuthUserResource> authUserResourceList = authDao.select(authUserResourceExample);
+        List<Integer> authResourceIdList = authUserResourceList.stream()
+                .map(AuthUserResource::getResourceId)
+                .collect(Collectors.toList());
+
+        List<AuthResource> allAuthResource = findAllResource();
+        return allAuthResource.stream()
+                .filter(authResource -> authResourceIdList.contains(authResource.getId()))
+                .collect(Collectors.groupingBy(AuthResource::getType));
     }
 
 }

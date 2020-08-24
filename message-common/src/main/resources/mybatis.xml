@@ -7,8 +7,8 @@
         <typeHandler handler="com.phoenix.message.common.entity.typehandler.JsonTypeHandler"
                      javaType="java.util.List"/>
         <typeHandler handler="com.phoenix.message.common.entity.typehandler.JsonTypeHandler"
-                     javaType="com.phoenix.message.common.entity.json.TaskConfigExtra"/>
+                     javaType="com.phoenix.message.common.entity.json.PushTaskConfigTags"/>
         <typeHandler handler="com.phoenix.message.common.entity.typehandler.JsonTypeHandler"
-                     javaType="com.phoenix.message.common.entity.json.TaskConfigTargetTag"/>
+                     javaType="com.phoenix.message.common.entity.json.PushTaskConfigExtra"/>
     </typeHandlers>
 </configuration>

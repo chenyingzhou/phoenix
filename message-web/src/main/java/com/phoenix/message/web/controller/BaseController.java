@@ -1,6 +1,7 @@
 package com.phoenix.message.web.controller;
 
 import com.phoenix.message.common.service.AuthService;
+import com.phoenix.message.common.service.PushService;
 import com.phoenix.message.web.model.BaseListResponse;
 import com.phoenix.message.web.model.BaseResponse;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,6 +13,9 @@ import java.util.List;
 public abstract class BaseController {
     @Resource
     protected AuthService authService;
+
+    @Resource
+    protected PushService pushService;
 
     protected <T> BaseResponse<T> sendData(T data) {
         var resp = new BaseResponse<T>();

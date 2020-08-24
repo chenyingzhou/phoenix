@@ -52,8 +52,14 @@
         <!-- mapper接口 -->
         <javaClientGenerator targetPackage="com.phoenix.message.common.mapper" targetProject="src/main/java" type="XMLMAPPER"/>
 
-        <table tableName="auth_%">
+        <table tableName="_auth_%">
             <generatedKey column="id" sqlStatement="JDBC" identity="true"/>
+        </table>
+        <table tableName="push_task_config">
+            <generatedKey column="id" sqlStatement="JDBC" identity="true"/>
+            <columnOverride column="tags" javaType=" com.phoenix.message.common.entity.json.PushTaskConfigTags"/>
+            <columnOverride column="not_tags" javaType="com.phoenix.message.common.entity.json.PushTaskConfigTags"/>
+            <columnOverride column="extra" javaType="com.phoenix.message.common.entity.json.PushTaskConfigExtra"/>
         </table>
     </context>
 </generatorConfiguration>

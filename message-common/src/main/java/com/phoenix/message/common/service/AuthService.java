@@ -1,6 +1,6 @@
 package com.phoenix.message.common.service;
 
-import com.phoenix.message.common.dto.auth.AuthRoleTree;
+import com.phoenix.message.common.dto.AuthRoleTree;
 import com.phoenix.message.common.entity.AuthResource;
 import com.phoenix.message.common.entity.AuthRole;
 import com.phoenix.message.common.entity.AuthUser;

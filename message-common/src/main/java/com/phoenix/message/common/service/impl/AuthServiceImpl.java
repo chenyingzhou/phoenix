@@ -2,7 +2,7 @@ package com.phoenix.message.common.service.impl;
 
 import com.phoenix.message.common.beanutil.CachedBeanCopier;
 import com.phoenix.message.common.dao.AuthDao;
-import com.phoenix.message.common.dto.auth.AuthRoleTree;
+import com.phoenix.message.common.dto.AuthRoleTree;
 import com.phoenix.message.common.entity.*;
 import com.phoenix.message.common.service.AuthService;
 import org.springframework.stereotype.Service;

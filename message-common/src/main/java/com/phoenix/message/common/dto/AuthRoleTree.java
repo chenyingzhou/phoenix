@@ -1,4 +1,4 @@
-package com.phoenix.message.common.dto.auth;
+package com.phoenix.message.common.dto;
 
 import com.phoenix.message.common.entity.AuthRole;
 import lombok.Data;

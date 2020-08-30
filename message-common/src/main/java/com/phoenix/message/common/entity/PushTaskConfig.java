@@ -133,12 +133,6 @@ public class PushTaskConfig implements Serializable {
     private PushTaskConfigTags tags;
 
     /**
-     * 排除标签
-     */
-    @Column(name = "not_tags")
-    private PushTaskConfigTags notTags;
-
-    /**
      * 其他属性
      */
     @Column(name = "extra")
@@ -226,10 +220,6 @@ public class PushTaskConfig implements Serializable {
 
     public static final String DB_TAGS = "tags";
 
-    public static final String NOT_TAGS = "notTags";
-
-    public static final String DB_NOT_TAGS = "not_tags";
-
     public static final String EXTRA = "extra";
 
     public static final String DB_EXTRA = "extra";
@@ -260,7 +250,6 @@ public class PushTaskConfig implements Serializable {
         sb.append(", createTime=").append(createTime);
         sb.append(", updateTime=").append(updateTime);
         sb.append(", tags=").append(tags);
-        sb.append(", notTags=").append(notTags);
         sb.append(", extra=").append(extra);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");

@@ -26,7 +26,7 @@ public class AuthController extends BaseController {
         AuthRoleTree authRoleTree = authService.authRoleListToTree(authRoleList, new AuthRoleTree());
 
         AuthRoleTreeRsp authRoleTreeRsp = JacksonUtil.transObject(authRoleTree, AuthRoleTreeRsp.class);
-        return sendList(authRoleTreeRsp.getChildren());
+        return sendList(authRoleTreeRsp.getChildren(), null);
     }
 
     @GetMapping("/auth/resource")

@@ -1,5 +1,6 @@
 package com.phoenix.message.web.controller;
 
+import com.phoenix.message.common.Pagination;
 import com.phoenix.message.common.service.AuthService;
 import com.phoenix.message.common.service.PushService;
 import com.phoenix.message.web.model.BaseListResponse;
@@ -25,10 +26,15 @@ public abstract class BaseController {
         return resp;
     }
 
-    protected <T> BaseListResponse<T> sendList(List<T> list) {
+    protected <T> BaseListResponse<T> sendList(List<T> list, Pagination pagination) {
         var resp = new BaseListResponse<T>();
         resp.setCode(0);
         resp.setMsg("");
+        if (pagination != null) {
+            resp.getData().setPage(pagination.getPage());
+            resp.getData().setPageSize(pagination.getPageSize());
+            resp.getData().setTotalCount(pagination.getTotalCount());
+        }
         resp.getData().setList(list);
         return resp;
     }

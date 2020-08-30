@@ -30,6 +30,11 @@ spring:
       auto-offset-reset: earliest
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+  mvc:
+    format:
+      date-time: yyyy-MM-dd HH:mm:ss
+      date: yyyy-MM-dd HH:mm:ss
+      time: HH:mm:ss
 
 mybatis:
   config-location: classpath:mybatis.xml

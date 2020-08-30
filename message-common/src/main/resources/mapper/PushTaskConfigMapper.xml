@@ -25,7 +25,6 @@
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
     <result column="tags" jdbcType="LONGVARCHAR" property="tags" />
-    <result column="not_tags" jdbcType="LONGVARCHAR" property="notTags" />
     <result column="extra" jdbcType="LONGVARCHAR" property="extra" />
   </resultMap>
 </mapper>

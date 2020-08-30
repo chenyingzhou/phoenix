@@ -1,6 +1,10 @@
 package com.phoenix.message.common.dao;
 
+import com.phoenix.message.common.Pagination;
+import com.phoenix.message.common.constant.SqlConstant;
+import com.phoenix.message.common.filter.base.ColumnFilter;
 import com.phoenix.message.common.util.SpringContextUtil;
+import org.apache.ibatis.session.RowBounds;
 import tk.mybatis.mapper.common.Mapper;
 import tk.mybatis.mapper.entity.Example;
 
@@ -33,17 +37,52 @@ public interface BaseDao {
         return mapper.select(entity);
     }
 
-    default <T> List<T> selectByList(Class<T> tClass, String column, List<?> values, Object... columnValues) {
+    default <T> List<T> selectByFilter(Class<T> tClass, List<ColumnFilter> columnFilterList, Pagination pagination) {
         Mapper<T> mapper = getMapper(tClass);
         Example example = new Example(tClass);
         Example.Criteria criteria = example.createCriteria();
-        criteria.andIn(column, values);
-        for (int i = 1; i < columnValues.length; i += 2) {
-            Object extraColumn = columnValues[i - 1];
-            Object extraValues = columnValues[i];
-            if (extraColumn instanceof String && extraValues instanceof Iterable)
-                criteria.andIn((String) extraColumn, (Iterable<?>) extraValues);
+        for (ColumnFilter columnFilter : columnFilterList) {
+            String column = columnFilter.getColumn();
+            String operator = columnFilter.getOperator();
+            Object value = columnFilter.getValue();
+            switch (operator) {
+                case SqlConstant.LT:
+                    criteria.andLessThan(column, value);
+                    break;
+                case SqlConstant.LE:
+                    criteria.andLessThanOrEqualTo(column, value);
+                    break;
+                case SqlConstant.EQ:
+                    criteria.andEqualTo(column, value);
+                    break;
+                case SqlConstant.NE:
+                    criteria.andNotEqualTo(column, value);
+                    break;
+                case SqlConstant.GE:
+                    criteria.andGreaterThanOrEqualTo(column, value);
+                    break;
+                case SqlConstant.GT:
+                    criteria.andGreaterThan(column, value);
+                    break;
+                case SqlConstant.IN:
+                    if (value instanceof Iterable) {
+                        criteria.andIn(column, (Iterable<?>) value);
+                    }
+                    break;
+                case SqlConstant.LIKE:
+                    criteria.andLike(column, value.toString());
+                    break;
+            }
         }
-        return mapper.selectByExample(example);
+
+        if (pagination != null) {
+            int offset = (pagination.getPage() - 1) * pagination.getPageSize();
+            int limit = pagination.getPageSize();
+            RowBounds rowBounds = new RowBounds(offset, limit);
+            pagination.setTotalCount(mapper.selectCountByExample(example));
+            return mapper.selectByExampleAndRowBounds(example, rowBounds);
+        } else {
+            return mapper.selectByExample(example);
+        }
     }
 }

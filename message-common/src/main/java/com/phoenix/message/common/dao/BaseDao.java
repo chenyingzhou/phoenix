@@ -5,6 +5,7 @@ import com.phoenix.message.common.constant.SqlConstant;
 import com.phoenix.message.common.filter.base.ColumnFilter;
 import com.phoenix.message.common.util.SpringContextUtil;
 import org.apache.ibatis.session.RowBounds;
+import org.springframework.util.StringUtils;
 import tk.mybatis.mapper.common.Mapper;
 import tk.mybatis.mapper.entity.Example;
 
@@ -76,6 +77,13 @@ public interface BaseDao {
         }
 
         if (pagination != null) {
+            if (!StringUtils.isEmpty(pagination.getOrderBy())) {
+                if (pagination.getOrderType().toUpperCase().equals(SqlConstant.ORDER_DESC)) {
+                    example.orderBy(pagination.getOrderBy()).desc();
+                } else {
+                    example.orderBy(pagination.getOrderBy()).asc();
+                }
+            }
             int offset = (pagination.getPage() - 1) * pagination.getPageSize();
             int limit = pagination.getPageSize();
             RowBounds rowBounds = new RowBounds(offset, limit);

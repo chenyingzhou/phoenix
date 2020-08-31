@@ -9,4 +9,7 @@ public class SqlConstant {
     public final static String GT = "GREATER_THAN";
     public final static String IN = "IN";
     public final static String LIKE = "LIKE";
+
+    public final static String ORDER_ASC = "ASC";
+    public final static String ORDER_DESC = "DESC";
 }

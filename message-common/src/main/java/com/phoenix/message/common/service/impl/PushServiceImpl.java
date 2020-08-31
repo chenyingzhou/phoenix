@@ -51,4 +51,14 @@ public class PushServiceImpl implements PushService {
         }
         return pushDao.selectByFilter(PushTaskConfig.class, filterList, pagination);
     }
+
+    @Override
+    public Boolean savePushTaskConfig(PushTaskConfig pushTaskConfig) {
+        return pushDao.insertSelective(pushTaskConfig);
+    }
+
+    @Override
+    public Boolean updatePushTaskConfig(PushTaskConfig pushTaskConfig) {
+        return pushDao.updateSelective(pushTaskConfig);
+    }
 }

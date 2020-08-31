@@ -93,4 +93,24 @@ public interface BaseDao {
             return mapper.selectByExample(example);
         }
     }
+
+    default <T> Boolean insert(T entity) {
+        Mapper<T> mapper = getMapper(entity.getClass());
+        return mapper.insert(entity) > 0;
+    }
+
+    default <T> Boolean insertSelective(T entity) {
+        Mapper<T> mapper = getMapper(entity.getClass());
+        return mapper.insertSelective(entity) > 0;
+    }
+
+    default <T> Boolean update(T entity) {
+        Mapper<T> mapper = getMapper(entity.getClass());
+        return mapper.updateByPrimaryKey(entity) > 0;
+    }
+
+    default <T> Boolean updateSelective(T entity) {
+        Mapper<T> mapper = getMapper(entity.getClass());
+        return mapper.updateByPrimaryKeySelective(entity) > 0;
+    }
 }

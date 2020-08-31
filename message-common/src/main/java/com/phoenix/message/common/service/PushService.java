@@ -10,4 +10,8 @@ public interface PushService {
 
     List<PushTaskConfig> findTaskConfigList(PushTaskConfigFilter pushTaskConfigFilter, Pagination pagination);
 
+    Boolean savePushTaskConfig(PushTaskConfig pushTaskConfig);
+
+    public Boolean updatePushTaskConfig(PushTaskConfig pushTaskConfig);
+
 }

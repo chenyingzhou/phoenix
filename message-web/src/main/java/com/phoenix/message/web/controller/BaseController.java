@@ -39,15 +39,11 @@ public abstract class BaseController {
         return resp;
     }
 
-    protected BaseResponse<Object> sendOk(String msg) {
+    protected BaseResponse<?> sendOk() {
         var resp = new BaseResponse<>();
         resp.setCode(0);
-        resp.setMsg(msg);
+        resp.setMsg("");
         return resp;
-    }
-
-    protected BaseResponse<Object> sendOk() {
-        return sendOk("");
     }
 
 }

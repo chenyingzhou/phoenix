@@ -29,7 +29,7 @@ public class PushController extends BaseController {
     }
 
     @PostMapping("/push/task-config")
-    public BaseResponse<Object> saveTaskConfig(@RequestBody PushTaskConfigReq pushTaskConfigReq) {
+    public BaseResponse<?> saveTaskConfig(@RequestBody PushTaskConfigReq pushTaskConfigReq) {
         pushService.savePushTaskConfig(JacksonUtil.transObject(pushTaskConfigReq, PushTaskConfig.class));
         return sendOk();
     }

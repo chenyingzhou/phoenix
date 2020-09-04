@@ -1,8 +1,8 @@
 package com.phoenix.message.auth;
 
 import com.phoenix.message.auth.filter.AuthenticationFilter;
-import com.phoenix.message.auth.filter.LoginFilter;
-import com.phoenix.message.auth.filter.LogoutFilter;
+import com.phoenix.message.auth.filter.AuthLoginFilter;
+import com.phoenix.message.auth.filter.AuthLogoutFilter;
 import com.phoenix.message.common.entity.AuthRole;
 import com.phoenix.message.common.service.AuthService;
 import org.springframework.context.annotation.Configuration;
@@ -17,6 +17,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.cors.CorsUtils;
 
 import javax.annotation.Resource;
+import javax.servlet.Filter;
 import java.util.List;
 
 @Configuration
@@ -32,9 +33,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
         http.cors(Customizer.withDefaults());
-        http.addFilter(new LoginFilter(authenticationManager()))
-                .addFilter(new LogoutFilter())
-                .addFilter(new AuthenticationFilter(authenticationManager()));
+
+        Filter authenticationFilter = new AuthenticationFilter(authenticationManager());
+        Filter loginFilter = new AuthLoginFilter(authenticationManager());
+        Filter logoutFilter = new AuthLogoutFilter();
+        http.addFilter(authenticationFilter);
+        http.addFilterAfter(loginFilter, authenticationFilter.getClass());
+        http.addFilterAfter(logoutFilter, authenticationFilter.getClass());
 
         ExpressionUrlAuthorizationConfigurer<HttpSecurity>.ExpressionInterceptUrlRegistry registry = http.authorizeRequests();
         registry.requestMatchers(CorsUtils::isPreFlightRequest).permitAll();

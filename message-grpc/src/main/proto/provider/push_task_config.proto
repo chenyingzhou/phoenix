@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+package com.phoenix.message.grpc;
+
+message RpcPushTaskConfig {
+  int32 id = 1;
+  string app_name = 2;
+  string tag_source = 3;
+  string title = 4;
+  string body = 5;
+  string link = 6;
+  string image_url = 7;
+  int32 type = 8;
+  int32 priority = 9;
+  string notes = 10;
+  int32 period = 11;
+  int32 first_time = 12;
+  int32 last_time = 13;
+  int32 start_time = 14;
+  int32 end_time = 15;
+  int32 status = 16;
+  int32 create_time = 17;
+  int32 update_time = 18;
+  RpcPushTaskConfigTags tags = 19;
+  RpcPushTaskConfigExtra extra = 20;
+}
+
+message RpcPushTaskConfigTags {
+  repeated string country = 1;
+  repeated int32 gender = 2;
+  repeated int32 level = 3;
+  repeated int32 login = 4;
+}
+
+message RpcPushTaskConfigExtra {
+  string android_min = 1;
+  string android_max = 2;
+  string ios_min = 3;
+  string ios_max = 4;
+  int32 coupon_config_id = 5;
+}
+

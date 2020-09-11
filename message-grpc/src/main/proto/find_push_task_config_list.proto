@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package com.phoenix.message.grpc;
+
+import "provider/push_task_config.proto";
+
+message RpcFindPushTaskConfigListReq {
+  int32 id = 1;
+  string app_name = 2;
+  int32 type = 3;
+  int32 status = 4;
+  int32 create_time_begin = 5;
+  int32 create_time_end = 6;
+  int32 page = 7;
+  int32 page_size = 8;
+}
+
+message RpcFindPushTaskConfigListResp {
+  int32 code = 1;
+  string msg = 2;
+  RpcPaginationResult data = 3;
+}
+
+message RpcPaginationResult {
+  int32 total_count = 1;
+  repeated RpcPushTaskConfig list = 2;
+}

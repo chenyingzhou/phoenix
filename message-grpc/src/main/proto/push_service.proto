@@ -3,6 +3,7 @@ syntax = "proto3";
 package com.phoenix.message.grpc;
 
 import "find_push_task_config_list.proto";
+option java_multiple_files = true;
 
 service PushService {
   rpc RpcFindPushTaskConfigList (RpcFindPushTaskConfigListReq) returns (RpcFindPushTaskConfigListResp);

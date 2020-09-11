@@ -1,6 +1,7 @@
 syntax = "proto3";
 
 package com.phoenix.message.grpc;
+option java_multiple_files = true;
 
 message RpcPushTaskConfig {
   int32 id = 1;

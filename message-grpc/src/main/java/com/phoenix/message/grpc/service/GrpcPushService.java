@@ -1,31 +1,25 @@
 package com.phoenix.message.grpc.service;
 
-import com.phoenix.message.grpc.FindPushTaskConfigList;
-import com.phoenix.message.grpc.PushServiceGrpc;
-import com.phoenix.message.grpc.PushTaskConfig;
+import com.phoenix.message.grpc.*;
 import io.grpc.stub.StreamObserver;
 import net.devh.boot.grpc.server.service.GrpcService;
-
 
 @GrpcService
 public class GrpcPushService extends PushServiceGrpc.PushServiceImplBase {
     @Override
-    public void rpcFindPushTaskConfigList(FindPushTaskConfigList.RpcFindPushTaskConfigListReq request, StreamObserver<FindPushTaskConfigList.RpcFindPushTaskConfigListResp> responseObserver) {
-        responseObserver.onNext(FindPushTaskConfigList.RpcFindPushTaskConfigListResp
-                .newBuilder()
-                .setCode(0)
-                .setMsg("hello")
-                .setData(FindPushTaskConfigList.RpcPaginationResult
-                        .newBuilder()
-                        .setTotalCount(100)
-                        .setList(0, PushTaskConfig.RpcPushTaskConfig
-                                .newBuilder()
-                                .setAppName("hello")
-                                .build()
-                        ).build()
-                ).build()
+    public void rpcFindPushTaskConfigList(RpcFindPushTaskConfigListReq request, StreamObserver<RpcFindPushTaskConfigListResp> responseObserver) {
+        responseObserver.onNext(RpcFindPushTaskConfigListResp.newBuilder()
+                .setData(RpcPaginationResult.newBuilder()
+                        .setTotalCount(10)
+                        .setList(0, RpcPushTaskConfig.newBuilder()
+                                .setAppName("vova")
+                                .build())
+                        .setList(1, RpcPushTaskConfig.newBuilder()
+                                .setAppName("airyclub")
+                                .build())
+                        .build())
+                .build()
         );
-        responseObserver.onCompleted();
     }
 
 }

@@ -1,6 +1,6 @@
 package com.phoenix.message.grpc.service;
 
-import com.phoenix.message.grpc.*;
+import com.phoenix.message.proto.*;
 import io.grpc.stub.StreamObserver;
 import net.devh.boot.grpc.server.service.GrpcService;
 

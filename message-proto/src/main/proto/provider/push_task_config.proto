@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package com.phoenix.message.grpc;
+package com.phoenix.message.proto;
 option java_multiple_files = true;
 
 message RpcPushTaskConfig {

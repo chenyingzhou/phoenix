@@ -11,15 +11,16 @@ public class GrpcPushService extends PushServiceGrpc.PushServiceImplBase {
         responseObserver.onNext(RpcFindPushTaskConfigListResp.newBuilder()
                 .setData(RpcPaginationResult.newBuilder()
                         .setTotalCount(10)
-                        .setList(0, RpcPushTaskConfig.newBuilder()
+                        .addList(RpcPushTaskConfig.newBuilder()
                                 .setAppName("vova")
                                 .build())
-                        .setList(1, RpcPushTaskConfig.newBuilder()
+                        .addList(RpcPushTaskConfig.newBuilder()
                                 .setAppName("airyclub")
                                 .build())
                         .build())
                 .build()
         );
+        responseObserver.onCompleted();
     }
 
 }

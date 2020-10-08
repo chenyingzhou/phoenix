@@ -1,4 +1,4 @@
-package com.phoenix.message;
+package com.phoenix.message.grpc;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -11,7 +11,7 @@ import java.util.TimeZone;
 @SpringBootApplication
 @EnableDiscoveryClient
 @MapperScan("com.phoenix.message.common.mapper")
-public class MessageApplication {
+public class MessageGrpcApplication {
 
     @PostConstruct
     void started() {
@@ -19,7 +19,7 @@ public class MessageApplication {
     }
 
     public static void main(String[] args) {
-        SpringApplication.run(MessageApplication.class, args);
+        SpringApplication.run(MessageGrpcApplication.class, args);
     }
 
 }

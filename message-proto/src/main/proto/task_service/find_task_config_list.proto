@@ -2,10 +2,10 @@ syntax = "proto3";
 
 package com.phoenix.message.proto;
 
-import "provider/push_task_config.proto";
+import "task_service/provider/task_config.proto";
 option java_multiple_files = true;
 
-message RpcFindPushTaskConfigListReq {
+message RpcFindTaskConfigListReq {
   int32 id = 1;
   string app_name = 2;
   int32 type = 3;
@@ -16,7 +16,7 @@ message RpcFindPushTaskConfigListReq {
   int32 page_size = 8;
 }
 
-message RpcFindPushTaskConfigListResp {
+message RpcFindTaskConfigListResp {
   int32 code = 1;
   string msg = 2;
   RpcPaginationResult data = 3;
@@ -24,5 +24,5 @@ message RpcFindPushTaskConfigListResp {
 
 message RpcPaginationResult {
   int32 total_count = 1;
-  repeated RpcPushTaskConfig list = 2;
+  repeated RpcTaskConfig list = 2;
 }

@@ -67,7 +67,7 @@ CREATE TABLE `admin_user`  (
 -- Records of admin_user
 -- ----------------------------
 BEGIN;
-INSERT INTO `admin_user` VALUES (1, 'test', 'test', 1, '[\"vova\", \"airyclub\"]', '[\"push\", \"coupon\"]', 'test@vova.com.hk', '$2a$10$zayb2P24XPQBf3FWjIdFxetyaT7v52Mbj2Nkbhy9.OT00Km5GYyY6', 1, 1, '2019-09-02 02:06:36', '2020-08-06 09:12:09'), (2, 'test1', 'test', 0, '[\"vova\"]', '[\"push\"]', 'test1@vova.com.hk', '$2a$10$zayb2P24XPQBf3FWjIdFxetyaT7v52Mbj2Nkbhy9.OT00Km5GYyY6', 1, 1, '2019-09-02 02:06:36', '2020-08-06 09:12:12');
+INSERT INTO `admin_user` VALUES (1, 'model', 'model', 1, '[\"vova\", \"airyclub\"]', '[\"push\", \"coupon\"]', 'model@vova.com.hk', '$2a$10$zayb2P24XPQBf3FWjIdFxetyaT7v52Mbj2Nkbhy9.OT00Km5GYyY6', 1, 1, '2019-09-02 02:06:36', '2020-08-06 09:12:09'), (2, 'test1', 'model', 0, '[\"vova\"]', '[\"push\"]', 'test1@vova.com.hk', '$2a$10$zayb2P24XPQBf3FWjIdFxetyaT7v52Mbj2Nkbhy9.OT00Km5GYyY6', 1, 1, '2019-09-02 02:06:36', '2020-08-06 09:12:12');
 COMMIT;
 
 -- ----------------------------
@@ -163,7 +163,7 @@ CREATE TABLE `auth_user`  (
 -- Records of auth_user
 -- ----------------------------
 BEGIN;
-INSERT INTO `auth_user` VALUES (1, 'test', '$2a$10$zayb2P24XPQBf3FWjIdFxetyaT7v52Mbj2Nkbhy9.OT00Km5GYyY6', 'test', 'test@vova.com.hk', 0, 0, '2019-09-02 02:06:36', '2020-08-12 09:12:48'), (2, 'test1', '$2a$10$zayb2P24XPQBf3FWjIdFxetyaT7v52Mbj2Nkbhy9.OT00Km5GYyY6', 'test', 'test1@vova.com.hk', 0, 0, '2019-09-02 02:06:36', '2020-08-12 09:12:52');
+INSERT INTO `auth_user` VALUES (1, 'model', '$2a$10$zayb2P24XPQBf3FWjIdFxetyaT7v52Mbj2Nkbhy9.OT00Km5GYyY6', 'model', 'model@vova.com.hk', 0, 0, '2019-09-02 02:06:36', '2020-08-12 09:12:48'), (2, 'test1', '$2a$10$zayb2P24XPQBf3FWjIdFxetyaT7v52Mbj2Nkbhy9.OT00Km5GYyY6', 'model', 'test1@vova.com.hk', 0, 0, '2019-09-02 02:06:36', '2020-08-12 09:12:52');
 COMMIT;
 
 -- ----------------------------

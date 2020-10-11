@@ -13,6 +13,7 @@
         <module>message-common</module>
         <module>message-proto</module>
         <module>message-grpc</module>
+        <module>message-web</module>
     </modules>
 
     <parent>
@@ -32,6 +33,7 @@
         <tk.mybatis.starter.version>2.1.5</tk.mybatis.starter.version>
         <tk.mybatis.mapper.version>4.1.5</tk.mybatis.mapper.version>
         <mybatis.generator.version>1.3.7</mybatis.generator.version>
+        <org.mapstruct.version>1.4.0.Final</org.mapstruct.version>
     </properties>
 
     <dependencies>
@@ -56,6 +58,16 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct</artifactId>
+            <version>${org.mapstruct.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct-processor</artifactId>
+            <version>${org.mapstruct.version}</version>
         </dependency>
     </dependencies>
 

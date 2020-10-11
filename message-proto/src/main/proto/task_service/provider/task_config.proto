@@ -3,7 +3,7 @@ syntax = "proto3";
 package com.phoenix.message.proto;
 option java_multiple_files = true;
 
-message RpcPushTaskConfig {
+message RpcTaskConfig {
   int32 id = 1;
   string app_name = 2;
   string tag_source = 3;
@@ -22,18 +22,18 @@ message RpcPushTaskConfig {
   int32 status = 16;
   int32 create_time = 17;
   int32 update_time = 18;
-  RpcPushTaskConfigTags tags = 19;
-  RpcPushTaskConfigExtra extra = 20;
+  RpcTaskConfigTags tags = 19;
+  RpcTaskConfigExtra extra = 20;
 }
 
-message RpcPushTaskConfigTags {
+message RpcTaskConfigTags {
   repeated string country = 1;
   repeated int32 gender = 2;
   repeated int32 level = 3;
   repeated int32 login = 4;
 }
 
-message RpcPushTaskConfigExtra {
+message RpcTaskConfigExtra {
   string android_min = 1;
   string android_max = 2;
   string ios_min = 3;

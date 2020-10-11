@@ -1,4 +1,4 @@
-package com.phoenix.message.grpc;
+package com.phoenix.message.web;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

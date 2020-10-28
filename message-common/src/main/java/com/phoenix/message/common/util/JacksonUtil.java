@@ -12,20 +12,16 @@ public class JacksonUtil {
 
     private static final ThreadLocal<ObjectMapper> threadLocal = ThreadLocal.withInitial(
             () -> {
-                var objectMapper = new ObjectMapper();
+                ObjectMapper objectMapper = new ObjectMapper();
                 objectMapper.setDateFormat(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"));
                 objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
                 return objectMapper;
             }
     );
 
-    public static ObjectMapper getObjectMapper() {
-        return threadLocal.get();
-    }
-
     public static <T> T toObject(String jsonStr, Class<T> valueType) {
         try {
-            return getObjectMapper().readValue(jsonStr, valueType);
+            return threadLocal.get().readValue(jsonStr, valueType);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -33,10 +29,10 @@ public class JacksonUtil {
     }
 
     public static <T> List<T> toList(String jsonStr, Class<T> valueType) {
-        var valueList = new ArrayList<T>();
+        List<T> valueList = new ArrayList<>();
         try {
-            var objectMapper = getObjectMapper();
-            var objList = objectMapper.readValue(jsonStr, new TypeReference<List<Object>>() {
+            ObjectMapper objectMapper = threadLocal.get();
+            List<?> objList = objectMapper.readValue(jsonStr, new TypeReference<List<Object>>() {
             });
             for (Object obj : objList) {
                 valueList.add(objectMapper.convertValue(obj, valueType));
@@ -51,19 +47,11 @@ public class JacksonUtil {
 
     public static String toJson(Object object) {
         try {
-            return getObjectMapper().writeValueAsString(object);
+            return threadLocal.get().writeValueAsString(object);
         } catch (Exception e) {
             e.printStackTrace();
         }
         return null;
-    }
-
-    public static <T> T transObject(Object object, Class<T> valueType) {
-        return toObject(toJson(object), valueType);
-    }
-
-    public static <T> List<T> transList(List<?> objectList, Class<T> valueType) {
-        return toList(toJson(objectList), valueType);
     }
 
 }

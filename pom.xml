@@ -25,7 +25,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <java.version>14</java.version>
+        <java.version>11</java.version>
         <phoenix-common.version>1.0-20200612</phoenix-common.version>
         <alibaba.cloud.version>2.2.1.RELEASE</alibaba.cloud.version>
         <mysql-connector.version>8.0.20</mysql-connector.version>

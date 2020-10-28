@@ -1,4 +1,4 @@
-package com.phoenix.message.web.service;
+package com.phoenix.message.grpc.service;
 
 import com.phoenix.message.proto.*;
 import io.grpc.stub.StreamObserver;

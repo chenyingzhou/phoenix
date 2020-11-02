@@ -9,5 +9,11 @@
       "name": "maxwell.topics.task_config",
       "type": "java.lang.String",
       "description": "Description for maxwell.topics.task_config."
+    },
+    {
+      "name": "spring.cloud.nacos.discovery.server-addr",
+      "type": "java.lang.String",
+      "description": "Description for spring.cloud.nacos.discovery.server-addr."
     }
-  ] }
+  ]
+}

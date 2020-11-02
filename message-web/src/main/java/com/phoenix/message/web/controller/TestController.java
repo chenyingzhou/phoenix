@@ -1,5 +1,6 @@
 package com.phoenix.message.web.controller;
 
+import com.phoenix.message.common.service.TaskConfigService;
 import com.phoenix.message.proto.RpcFindTaskConfigListReq;
 import com.phoenix.message.proto.RpcFindTaskConfigListResp;
 import com.phoenix.message.proto.TaskServiceGrpc;
@@ -7,8 +8,11 @@ import com.phoenix.message.web.mapper.TaskConfigMapper;
 import com.phoenix.message.web.model.FindTaskConfigResp;
 import com.phoenix.message.web.model.PaginationResult;
 import net.devh.boot.grpc.client.inject.GrpcClient;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.annotation.Resource;
 
 @RestController
 public class TestController {

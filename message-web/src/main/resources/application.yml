@@ -23,18 +23,6 @@ spring:
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+0
-  kafka:
-    bootstrap-servers: 127.0.0.1:9092
-    consumer:
-      group-id: maxwell_source
-      auto-offset-reset: earliest
-      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-  mvc:
-    format:
-      date-time: yyyy-MM-dd HH:mm:ss
-      date: yyyy-MM-dd HH:mm:ss
-      time: HH:mm:ss
 
 grpc:
   client:
@@ -58,8 +46,3 @@ management:
       show-details: always
     shutdown:
       enabled: true
-
-maxwell:
-  group-id: maxwell_source
-  topics:
-    task_config: maxwell_maxwell_source_task_config

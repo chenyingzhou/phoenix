@@ -23,9 +23,8 @@ public class JacksonUtil {
         try {
             return threadLocal.get().readValue(jsonStr, valueType);
         } catch (Exception e) {
-            e.printStackTrace();
+            return null;
         }
-        return null;
     }
 
     public static <T> List<T> toList(String jsonStr, Class<T> valueType) {
@@ -40,18 +39,16 @@ public class JacksonUtil {
             return valueList;
         } catch (Exception e) {
             valueList.clear();
-            e.printStackTrace();
+            return valueList;
         }
-        return valueList;
     }
 
     public static String toJson(Object object) {
         try {
             return threadLocal.get().writeValueAsString(object);
         } catch (Exception e) {
-            e.printStackTrace();
+            return null;
         }
-        return null;
     }
 
 }

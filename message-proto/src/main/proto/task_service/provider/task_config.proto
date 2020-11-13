@@ -5,39 +5,43 @@ option java_multiple_files = true;
 
 message RpcTaskConfig {
   int32 id = 1;
-  string app_name = 2;
-  string tag_source = 3;
-  string title = 4;
-  string body = 5;
-  string link = 6;
-  string image_url = 7;
-  int32 type = 8;
-  int32 priority = 9;
-  string notes = 10;
-  int32 period = 11;
-  int32 first_time = 12;
-  int32 last_time = 13;
-  int32 start_time = 14;
-  int32 end_time = 15;
-  int32 status = 16;
-  int32 create_time = 17;
-  int32 update_time = 18;
-  RpcTaskConfigTags tags = 19;
-  RpcTaskConfigExtra extra = 20;
+  string name = 2;
+  int32 type = 3;
+  int32 classification = 4;
+  string app_name = 5;
+  RpcTaskConfigUserConfig user_config = 6;
+  RpcTaskConfigContentConfig content_config = 7;
+  RpcTaskConfigAccountConfig account_config = 8;
+  RpcTaskConfigVersionConfig version_config = 9;
+  int32 priority = 10;
+  string notes = 11;
+  int32 period = 12;
+  int32 use_timezone = 13;
+  int32 send_time = 14;
+  int32 record_time = 15;
+  int32 start_time = 16;
+  int32 end_time = 17;
+  int32 status = 18;
+  int32 create_time = 19;
+  int32 update_time = 20;
 }
 
-message RpcTaskConfigTags {
-  repeated string country = 1;
-  repeated int32 gender = 2;
-  repeated int32 level = 3;
-  repeated int32 login = 4;
+message RpcTaskConfigUserConfig {
+  repeated string gender = 1;
+  repeated string region_code = 2;
 }
 
-message RpcTaskConfigExtra {
-  string android_min = 1;
-  string android_max = 2;
-  string ios_min = 3;
-  string ios_max = 4;
-  int32 coupon_config_id = 5;
+message RpcTaskConfigContentConfig {
+  string type = 1;
 }
 
+message RpcTaskConfigAccountConfig {
+  string sender = 1;
+}
+
+message RpcTaskConfigVersionConfig {
+  string ios_min = 1;
+  string ios_max = 2;
+  string android_min = 3;
+  string android_max = 4;
+}

@@ -49,15 +49,17 @@ public class MybatisPlusGenerator {
                 //.setSuperControllerClass("父类")
                 .setRestControllerStyle(true)
                 .setEntityLombokModel(true)
+                .setEntityColumnConstant(true)
+                .setChainModel(true)
                 .setInclude(tables);
 
         PackageConfig packageConfig = new PackageConfig();
         packageConfig.setParent("com.phoenix.message.common")
-                .setMapper("mapper")
-                .setService("service")
                 .setController("controller")
-                .setEntity("entity")
-                .setXml("mapper");
+                .setService("service")
+                .setMapper("mapper")
+                .setXml("mapper")
+                .setEntity("entity");
 
         AutoGenerator autoGenerator = new AutoGenerator();
         autoGenerator.setGlobalConfig(config)

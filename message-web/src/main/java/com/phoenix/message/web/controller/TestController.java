@@ -1,18 +1,11 @@
 package com.phoenix.message.web.controller;
 
-import com.phoenix.message.common.service.TaskConfigService;
-import com.phoenix.message.proto.RpcFindTaskConfigListReq;
-import com.phoenix.message.proto.RpcFindTaskConfigListResp;
+import com.phoenix.message.common.dto.TaskConfigFilterDto;
 import com.phoenix.message.proto.TaskServiceGrpc;
-import com.phoenix.message.web.mapper.TaskConfigMapper;
-import com.phoenix.message.web.model.FindTaskConfigResp;
-import com.phoenix.message.web.model.PaginationResult;
+import com.phoenix.message.web.mapstruct.TaskConfigMapStruct;
 import net.devh.boot.grpc.client.inject.GrpcClient;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import javax.annotation.Resource;
 
 @RestController
 public class TestController {
@@ -20,12 +13,9 @@ public class TestController {
     private TaskServiceGrpc.TaskServiceBlockingStub stub;
 
     @GetMapping("/test")
-    public String test() {
-        RpcFindTaskConfigListReq.Builder reqBuilder = RpcFindTaskConfigListReq.newBuilder();
-        RpcFindTaskConfigListReq req = reqBuilder.setAppName("phoenix").build();
-        RpcFindTaskConfigListResp resp = stub.rpcFindTaskConfigList(req);
-        FindTaskConfigResp findTaskConfigResp = TaskConfigMapper.INSTANCE.toPojo(resp);
-        RpcFindTaskConfigListResp resp1 = TaskConfigMapper.INSTANCE.toProtobuf(findTaskConfigResp);
+    public String test(TaskConfigFilterDto taskConfigFilterDto) {
+        var req = TaskConfigMapStruct.INSTANCE.dto2RpcFindTaskConfigListWithPaginationReq(taskConfigFilterDto);
+        var resp = stub.rpcFindTaskConfigListWithPagination(req);
         return resp.toString();
     }
 }

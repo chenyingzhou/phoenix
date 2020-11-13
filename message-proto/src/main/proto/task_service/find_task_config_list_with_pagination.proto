@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package com.phoenix.message.proto;
+
+import "google/protobuf/wrappers.proto";
+import "task_service/provider/task_config.proto";
+option java_multiple_files = true;
+
+message RpcFindTaskConfigListWithPaginationReq {
+  google.protobuf.Int32Value current = 1;
+  google.protobuf.Int32Value size = 2;
+  google.protobuf.Int32Value id = 3;
+  google.protobuf.Int32Value type = 4;
+  google.protobuf.Int32Value classification = 5;
+  google.protobuf.StringValue app_name = 6;
+  google.protobuf.Int32Value status = 7;
+  google.protobuf.Int32Value create_time_start = 8;
+  google.protobuf.Int32Value create_time_end = 9;
+}
+
+message RpcFindTaskConfigListWithPaginationResp {
+  int32 code = 1;
+  string msg = 2;
+  RpcTaskConfigListPaginationResult data = 3;
+}
+
+message RpcTaskConfigListPaginationResult {
+  int32 current = 1;
+  int32 size = 2;
+  int32 total = 3;
+  repeated RpcTaskConfig records = 4;
+}

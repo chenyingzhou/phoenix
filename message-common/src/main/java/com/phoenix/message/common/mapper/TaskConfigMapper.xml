@@ -7,7 +7,7 @@
         <id column="id" property="id" />
         <result column="name" property="name" />
         <result column="type" property="type" />
-        <result column="`usage`" property="usage" />
+        <result column="classification" property="classification" />
         <result column="app_name" property="appName" />
         <result column="user_config" property="userConfig" />
         <result column="content_config" property="contentConfig" />
@@ -16,6 +16,7 @@
         <result column="priority" property="priority" />
         <result column="notes" property="notes" />
         <result column="period" property="period" />
+        <result column="use_timezone" property="useTimezone" />
         <result column="send_time" property="sendTime" />
         <result column="record_time" property="recordTime" />
         <result column="start_time" property="startTime" />
@@ -28,7 +29,7 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        id, name, type, `usage`, app_name, user_config, content_config, account_config, version_config, priority, notes, period, send_time, record_time, start_time, end_time, status, deleted, create_time, update_time
+        id, name, type, classification, app_name, user_config, content_config, account_config, version_config, priority, notes, period, use_timezone, send_time, record_time, start_time, end_time, status, deleted, create_time, update_time
     </sql>
 
 </mapper>

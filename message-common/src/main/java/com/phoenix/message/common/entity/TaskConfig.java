@@ -9,6 +9,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.experimental.Accessors;
 
 /**
  * <p>
@@ -16,10 +17,11 @@ import lombok.EqualsAndHashCode;
  * </p>
  *
  * @author nome
- * @since 2020-11-02
+ * @since 2020-11-09
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
+@Accessors(chain = true)
 @ApiModel(value="TaskConfig对象", description="推送任务配置表")
 public class TaskConfig extends Model<TaskConfig> {
 
@@ -36,7 +38,7 @@ public class TaskConfig extends Model<TaskConfig> {
     private Integer type;
 
     @ApiModelProperty(value = "用途：0-未知 1-营销 2-功能")
-    private Integer usage;
+    private Integer classification;
 
     @ApiModelProperty(value = "应用名")
     private String appName;
@@ -62,6 +64,9 @@ public class TaskConfig extends Model<TaskConfig> {
     @ApiModelProperty(value = "重复周期(天) 0不重复 -30每月同一天 -365每年同一天")
     private Integer period;
 
+    @ApiModelProperty(value = "是否按时区发送")
+    private Boolean useTimezone;
+
     @ApiModelProperty(value = "执行时间(设置)")
     private LocalDateTime sendTime;
 
@@ -78,7 +83,7 @@ public class TaskConfig extends Model<TaskConfig> {
     private Integer status;
 
     @ApiModelProperty(value = "是否删除")
-    private Integer deleted;
+    private Boolean deleted;
 
     @ApiModelProperty(value = "创建时间")
     private LocalDateTime createTime;
@@ -86,6 +91,48 @@ public class TaskConfig extends Model<TaskConfig> {
     @ApiModelProperty(value = "更新时间")
     private LocalDateTime updateTime;
 
+
+    public static final String ID = "id";
+
+    public static final String NAME = "name";
+
+    public static final String TYPE = "type";
+
+    public static final String CLASSIFICATION = "classification";
+
+    public static final String APP_NAME = "app_name";
+
+    public static final String USER_CONFIG = "user_config";
+
+    public static final String CONTENT_CONFIG = "content_config";
+
+    public static final String ACCOUNT_CONFIG = "account_config";
+
+    public static final String VERSION_CONFIG = "version_config";
+
+    public static final String PRIORITY = "priority";
+
+    public static final String NOTES = "notes";
+
+    public static final String PERIOD = "period";
+
+    public static final String USE_TIMEZONE = "use_timezone";
+
+    public static final String SEND_TIME = "send_time";
+
+    public static final String RECORD_TIME = "record_time";
+
+    public static final String START_TIME = "start_time";
+
+    public static final String END_TIME = "end_time";
+
+    public static final String STATUS = "status";
+
+    public static final String DELETED = "deleted";
+
+    public static final String CREATE_TIME = "create_time";
+
+    public static final String UPDATE_TIME = "update_time";
 
     @Override
     protected Serializable pkVal() {

@@ -10,6 +10,7 @@
     <packaging>pom</packaging>
 
     <modules>
+        <module>message-generator</module>
         <module>message-common</module>
         <module>message-proto</module>
         <module>message-grpc</module>

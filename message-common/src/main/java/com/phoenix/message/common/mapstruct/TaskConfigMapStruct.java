@@ -37,5 +37,5 @@ public interface TaskConfigMapStruct extends BaseMapStruct {
         return JacksonUtil.toObject(content, TaskConfigAccountConfigDto.class);
     }
 
-    Pagination<TaskConfigDto> taskConfigPage2Dto(Page<TaskConfig> taskConfigPage);
+    Pagination<TaskConfigDto> entity2Dto(Page<TaskConfig> taskConfigPage);
 }

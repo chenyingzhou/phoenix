@@ -21,9 +21,9 @@ public class PushController extends BaseController {
 
     @GetMapping("/config")
     public BaseResponse<BaseResponse.Pagination<TaskConfig>> taskConfigList(TaskConfigListReq taskConfigListReq) {
-        RpcFindTaskConfigListWithPaginationReq rpcReq = TaskConfigMapStruct.INSTANCE.req2RpcReq(taskConfigListReq);
+        RpcFindTaskConfigListWithPaginationReq rpcReq = TaskConfigMapStruct.INSTANCE.toRpc(taskConfigListReq);
         RpcFindTaskConfigListWithPaginationResp rpcResp = stub.rpcFindTaskConfigListWithPagination(rpcReq);
-        return TaskConfigMapStruct.INSTANCE.rpcResp2Resp(rpcResp);
+        return TaskConfigMapStruct.INSTANCE.fromRpc(rpcResp);
     }
 
 }

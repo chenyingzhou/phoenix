@@ -21,9 +21,9 @@ public class GrpcTaskService extends TaskServiceGrpc.TaskServiceImplBase {
 
     @Override
     public void rpcFindTaskConfigListWithPagination(RpcFindTaskConfigListWithPaginationReq request, StreamObserver<RpcFindTaskConfigListWithPaginationResp> responseObserver) {
-        TaskConfigFilterDto taskConfigFilterDto = TaskConfigMapStruct.INSTANCE.rpcFindTaskConfigListWithPaginationReq2Dto(request);
-        Pagination<TaskConfigDto> paginationResult = taskFacade.findTaskConfigWithPagination(taskConfigFilterDto);
-        RpcTaskConfigListPaginationResult rpcPaginationResult = TaskConfigMapStruct.INSTANCE.dto2RpcTaskConfigListPaginationResult(paginationResult);
+        TaskConfigFilterDto taskConfigFilterDto = TaskConfigMapStruct.INSTANCE.toDto(request);
+        Pagination<TaskConfigDto> taskConfigDtoPagination = taskFacade.findTaskConfigWithPagination(taskConfigFilterDto);
+        RpcTaskConfigListPaginationResult rpcPaginationResult = TaskConfigMapStruct.INSTANCE.fromDto(taskConfigDtoPagination);
         RpcFindTaskConfigListWithPaginationResp.Builder builder = RpcFindTaskConfigListWithPaginationResp.newBuilder();
         builder.setCode(0)
                 .setMsg("")

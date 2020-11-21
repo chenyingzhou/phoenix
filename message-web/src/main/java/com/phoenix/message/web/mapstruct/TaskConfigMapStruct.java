@@ -14,19 +14,19 @@ import org.mapstruct.factory.Mappers;
 public interface TaskConfigMapStruct extends BaseMapStruct, WrapperConverter {
     TaskConfigMapStruct INSTANCE = Mappers.getMapper(TaskConfigMapStruct.class);
 
-    RpcFindTaskConfigListWithPaginationReq req2RpcReq(TaskConfigListReq req);
+    RpcFindTaskConfigListWithPaginationReq toRpc(TaskConfigListReq taskConfigListReq);
 
-    BaseResponse<BaseResponse.Pagination<TaskConfig>> rpcResp2Resp(RpcFindTaskConfigListWithPaginationResp rpcResp);
+    BaseResponse<BaseResponse.Pagination<TaskConfig>> fromRpc(RpcFindTaskConfigListWithPaginationResp rpcFindTaskConfigListWithPaginationResp);
 
     @Mappings({
             @Mapping(target = "records", source = "recordsList")
     })
-    BaseResponse.Pagination<TaskConfig> rpcPagination2Pagination(RpcTaskConfigListPaginationResult rpcPagination);
+    BaseResponse.Pagination<TaskConfig> fromRpc(RpcTaskConfigListPaginationResult rpcTaskConfigListPaginationResult);
 
     @Mappings({
             @Mapping(target = "gender", source = "genderList"),
             @Mapping(target = "regionCode", source = "regionCodeList")
     })
-    TaskConfigUserConfig rpcTaskConfigUserConfig2TaskConfigUserConfig(RpcTaskConfigUserConfig rpcTaskConfigUserConfig);
+    TaskConfigUserConfig fromRpc(RpcTaskConfigUserConfig rpcTaskConfigUserConfig);
 
 }

@@ -49,6 +49,6 @@ public class TaskFacadeImpl implements TaskFacade {
             queryWrapper.ge(TaskConfig.CREATE_TIME, taskConfigFilterDto.getCreateTimeEnd());
         }
         taskConfigService.page(page, queryWrapper);
-        return TaskConfigMapStruct.INSTANCE.taskConfigPage2Dto(page);
+        return TaskConfigMapStruct.INSTANCE.entity2Dto(page);
     }
 }

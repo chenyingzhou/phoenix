@@ -3,6 +3,7 @@ package com.phoenix.message.web.controller;
 import com.phoenix.message.proto.RpcFindTaskConfigListWithPaginationReq;
 import com.phoenix.message.proto.RpcFindTaskConfigListWithPaginationResp;
 import com.phoenix.message.proto.TaskServiceGrpc;
+import com.phoenix.message.web.annotation.RequestGetBody;
 import com.phoenix.message.web.mapstruct.TaskConfigMapStruct;
 import com.phoenix.message.web.model.BaseResponse;
 import com.phoenix.message.web.model.provider.TaskConfig;
@@ -20,7 +21,7 @@ public class PushController extends BaseController {
     private TaskServiceGrpc.TaskServiceBlockingStub stub;
 
     @GetMapping("/config")
-    public BaseResponse<BaseResponse.Pagination<TaskConfig>> taskConfigList(TaskConfigListReq taskConfigListReq) {
+    public BaseResponse<BaseResponse.Pagination<TaskConfig>> taskConfigList(@RequestGetBody TaskConfigListReq taskConfigListReq) {
         RpcFindTaskConfigListWithPaginationReq rpcReq = TaskConfigMapStruct.INSTANCE.toRpc(taskConfigListReq);
         RpcFindTaskConfigListWithPaginationResp rpcResp = stub.rpcFindTaskConfigListWithPagination(rpcReq);
         return TaskConfigMapStruct.INSTANCE.fromRpc(rpcResp);

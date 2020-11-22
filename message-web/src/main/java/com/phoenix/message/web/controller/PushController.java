@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/task")
 public class PushController extends BaseController {
 
-    @GrpcClient("message-grpc")
+    @GrpcClient("message-grpc-service")
     private TaskServiceGrpc.TaskServiceBlockingStub stub;
 
     @GetMapping("/config")

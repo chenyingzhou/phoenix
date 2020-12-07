@@ -1,6 +1,7 @@
 package com.phoenix.message.web.controller;
 
 import com.phoenix.message.web.model.BaseResponse;
+import io.swagger.annotations.Api;
 import org.springframework.boot.autoconfigure.web.ServerProperties;
 import org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController;
 import org.springframework.boot.web.error.ErrorAttributeOptions;
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
 @Controller
+@Api(tags = "异常控制器", hidden = true)
 public class ErrorController extends BasicErrorController {
     public ErrorController(ServerProperties serverProperties) {
         super(new DefaultErrorAttributes(), serverProperties.getError());

@@ -34,10 +34,26 @@ public class RequestGetBodyResolver implements HandlerMethodArgumentResolver {
         for (String queryKeyValue : queryKeyValues) {
             String[] keyValue = queryKeyValue.split("=");
             if (keyValue.length == 2) {
-                queryMap.put(keyValue[0], keyValue[1]);
+                queryMap.put(toUnderline(keyValue[0]), keyValue[1]);
             }
         }
         return JacksonUtil.toObject(JacksonUtil.toJson(queryMap), methodParameter.getParameterType());
+    }
+
+    private String toUnderline(String source) {
+        if (source == null) {
+            return null;
+        }
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < source.length(); i++) {
+            char ch = source.charAt(i);
+            ch = ch != '-' ? ch : '_';
+            if (Character.isUpperCase(ch) && i != 0) {
+                sb.append('_');
+            }
+            sb.append(ch);
+        }
+        return sb.toString().toLowerCase();
     }
 
 }

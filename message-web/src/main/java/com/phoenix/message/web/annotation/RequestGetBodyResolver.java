@@ -4,6 +4,7 @@ import com.phoenix.message.common.util.JacksonUtil;
 import org.springframework.core.MethodParameter;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.support.WebDataBinderFactory;
 import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
@@ -30,7 +31,8 @@ public class RequestGetBodyResolver implements HandlerMethodArgumentResolver {
                                   WebDataBinderFactory webDataBinderFactory) {
         final HttpServletRequest request = (HttpServletRequest) nativeWebRequest.getNativeRequest();
         final Map<String, String> queryMap = new HashMap<>();
-        String[] queryKeyValues = URLDecoder.decode(request.getQueryString(), StandardCharsets.UTF_8).split("&");
+        String queryString = request.getQueryString();
+        String[] queryKeyValues = URLDecoder.decode(!StringUtils.isEmpty(queryString) ? queryString : "", StandardCharsets.UTF_8).split("&");
         for (String queryKeyValue : queryKeyValues) {
             String[] keyValue = queryKeyValue.split("=");
             if (keyValue.length == 2) {

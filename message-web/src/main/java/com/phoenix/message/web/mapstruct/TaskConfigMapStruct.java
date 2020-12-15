@@ -29,4 +29,6 @@ public interface TaskConfigMapStruct extends BaseMapStruct, WrapperConverter {
     })
     TaskConfigUserConfig fromRpc(RpcTaskConfigUserConfig rpcTaskConfigUserConfig);
 
+    BaseResponse<TaskConfig> fromRpc(RpcFindTaskConfigByIdResp rpcFindTaskConfigByIdResp);
+
 }

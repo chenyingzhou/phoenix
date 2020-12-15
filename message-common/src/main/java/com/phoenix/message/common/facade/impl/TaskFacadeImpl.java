@@ -51,4 +51,13 @@ public class TaskFacadeImpl implements TaskFacade {
         taskConfigService.page(page, queryWrapper);
         return TaskConfigMapStruct.INSTANCE.entity2Dto(page);
     }
+
+    @Override
+    public TaskConfigDto findTaskConfigById(Integer id) {
+        if (id == null || id <= 0) {
+            return null;
+        }
+        TaskConfig taskConfig = taskConfigService.getById(id);
+        return TaskConfigMapStruct.INSTANCE.entity2Dto(taskConfig);
+    }
 }

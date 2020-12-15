@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package com.phoenix.message.proto;
+
+import "task_service/provider/task_config.proto";
+option java_multiple_files = true;
+
+message RpcFindTaskConfigByIdReq {
+  int32 id = 1;
+}
+
+message RpcFindTaskConfigByIdResp {
+  int32 code = 1;
+  string msg = 2;
+  RpcTaskConfig data = 3;
+}

@@ -5,10 +5,7 @@ import com.phoenix.message.common.dto.TaskConfigDto;
 import com.phoenix.message.common.dto.TaskConfigFilterDto;
 import com.phoenix.message.common.facade.TaskFacade;
 import com.phoenix.message.grpc.mapstruct.TaskConfigMapStruct;
-import com.phoenix.message.proto.RpcFindTaskConfigListWithPaginationReq;
-import com.phoenix.message.proto.RpcFindTaskConfigListWithPaginationResp;
-import com.phoenix.message.proto.RpcTaskConfigListPaginationResult;
-import com.phoenix.message.proto.TaskServiceGrpc;
+import com.phoenix.message.proto.*;
 import io.grpc.stub.StreamObserver;
 import net.devh.boot.grpc.server.service.GrpcService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +25,20 @@ public class GrpcTaskService extends TaskServiceGrpc.TaskServiceImplBase {
         builder.setCode(0)
                 .setMsg("")
                 .setData(rpcPaginationResult);
+        responseObserver.onNext(builder.build());
+        responseObserver.onCompleted();
+    }
+
+    @Override
+    public void rpcFindTaskConfigById(RpcFindTaskConfigByIdReq request, StreamObserver<RpcFindTaskConfigByIdResp> responseObserver) {
+        int id = request.getId();
+        TaskConfigDto taskConfigDto = taskFacade.findTaskConfigById(id);
+        RpcTaskConfig rpcTaskConfig = TaskConfigMapStruct.INSTANCE.fromDto(taskConfigDto);
+        RpcFindTaskConfigByIdResp.Builder builder = RpcFindTaskConfigByIdResp.newBuilder();
+        builder.setCode(0).setMsg("");
+        if (rpcTaskConfig != null) {
+            builder.setData(rpcTaskConfig);
+        }
         responseObserver.onNext(builder.build());
         responseObserver.onCompleted();
     }

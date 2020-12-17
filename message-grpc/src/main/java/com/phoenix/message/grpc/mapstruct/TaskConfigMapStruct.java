@@ -29,4 +29,12 @@ public interface TaskConfigMapStruct extends BaseMapStruct, WrapperConverter {
     })
     RpcTaskConfigUserConfig fromDto(TaskConfigUserConfigDto taskConfigUserConfigDto);
 
+    TaskConfigDto toDto(RpcTaskConfig rpcTaskConfig);
+
+    @Mappings({
+            @Mapping(target = "gender", source = "genderList"),
+            @Mapping(target = "regionCode", source = "regionCodeList")
+    })
+    TaskConfigUserConfigDto toDto(RpcTaskConfigUserConfig rpcTaskConfigUserConfig);
+
 }

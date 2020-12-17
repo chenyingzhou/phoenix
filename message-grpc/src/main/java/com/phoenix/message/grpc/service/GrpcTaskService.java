@@ -43,4 +43,17 @@ public class GrpcTaskService extends TaskServiceGrpc.TaskServiceImplBase {
         responseObserver.onCompleted();
     }
 
+    @Override
+    public void rpcSaveTaskConfig(RpcTaskConfig request, StreamObserver<RpcSaveTaskConfigResp> responseObserver) {
+        TaskConfigDto taskConfigDto = TaskConfigMapStruct.INSTANCE.toDto(request);
+        Integer id = taskFacade.saveTaskConfig(taskConfigDto);
+        RpcSaveTaskConfigResp.Builder builder = RpcSaveTaskConfigResp.newBuilder();
+        builder.setCode(0).setMsg("");
+        if (id != null) {
+            builder.setData(RpcTaskConfigIdModel.newBuilder().setId(id).build());
+        }
+        responseObserver.onNext(builder.build());
+        responseObserver.onCompleted();
+    }
+
 }

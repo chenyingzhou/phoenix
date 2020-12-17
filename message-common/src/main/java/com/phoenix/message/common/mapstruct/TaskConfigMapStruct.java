@@ -40,4 +40,6 @@ public interface TaskConfigMapStruct extends BaseMapStruct {
     Pagination<TaskConfigDto> entity2Dto(Page<TaskConfig> taskConfigPage);
 
     TaskConfigDto entity2Dto(TaskConfig taskConfig);
+
+    TaskConfig dto2Entity(TaskConfigDto taskConfigDto);
 }

@@ -2,11 +2,14 @@ syntax = "proto3";
 
 package com.phoenix.message.proto;
 
+import "task_service/provider/task_config.proto";
 import "task_service/find_task_config_list_with_pagination.proto";
 import "task_service/find_task_config_by_id.proto";
+import "task_service/save_task_config.proto";
 option java_multiple_files = true;
 
 service TaskService {
   rpc RpcFindTaskConfigListWithPagination (RpcFindTaskConfigListWithPaginationReq) returns (RpcFindTaskConfigListWithPaginationResp);
   rpc RpcFindTaskConfigById (RpcFindTaskConfigByIdReq) returns (RpcFindTaskConfigByIdResp);
+  rpc RpcSaveTaskConfig (RpcTaskConfig) returns (RpcSaveTaskConfigResp);
 }

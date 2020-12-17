@@ -1,6 +1,10 @@
-package com.phoenix.message.web.model.provider;
+package com.phoenix.message.web.model.request;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.phoenix.message.web.model.provider.TaskConfigAccountConfig;
+import com.phoenix.message.web.model.provider.TaskConfigContentConfig;
+import com.phoenix.message.web.model.provider.TaskConfigUserConfig;
+import com.phoenix.message.web.model.provider.TaskConfigVersionConfig;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -8,8 +12,8 @@ import lombok.experimental.Accessors;
 
 @Data
 @Accessors(chain = true)
-@ApiModel(value = "任务配置")
-public class TaskConfig {
+@ApiModel(value = "任务配置编辑请求参数")
+public class TaskConfigEditReq {
     @JsonProperty("id")
     @ApiModelProperty(value = "ID", position = 10)
     private Integer id;
@@ -66,27 +70,12 @@ public class TaskConfig {
     @ApiModelProperty(value = "执行时间(设置)", position = 140)
     private Integer sendTime;
 
-    @JsonProperty("record_time")
-    @ApiModelProperty(value = "记录时间(执行时更新)", position = 150)
-    private Integer recordTime;
-
     @JsonProperty("start_time")
-    @ApiModelProperty(value = "有效期起始", position = 160)
+    @ApiModelProperty(value = "有效期起始", position = 150)
     private Integer startTime;
 
     @JsonProperty("end_time")
-    @ApiModelProperty(value = "有效期结束", position = 170)
+    @ApiModelProperty(value = "有效期结束", position = 160)
     private Integer endTime;
 
-    @JsonProperty("status")
-    @ApiModelProperty(value = "状态(0:已就绪,1:执行中,2:已完成,3:已终止)", position = 180)
-    private Integer status;
-
-    @JsonProperty("create_time")
-    @ApiModelProperty(value = "创建时间", position = 190)
-    private Integer createTime;
-
-    @JsonProperty("update_time")
-    @ApiModelProperty(value = "更新时间", position = 200)
-    private Integer updateTime;
 }

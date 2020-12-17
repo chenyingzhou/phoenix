@@ -5,6 +5,7 @@ import com.phoenix.message.proto.*;
 import com.phoenix.message.web.model.BaseResponse;
 import com.phoenix.message.web.model.provider.TaskConfig;
 import com.phoenix.message.web.model.provider.TaskConfigUserConfig;
+import com.phoenix.message.web.model.request.TaskConfigEditReq;
 import com.phoenix.message.web.model.request.TaskConfigListReq;
 import org.mapstruct.*;
 import org.mapstruct.factory.Mappers;
@@ -30,5 +31,13 @@ public interface TaskConfigMapStruct extends BaseMapStruct, WrapperConverter {
     TaskConfigUserConfig fromRpc(RpcTaskConfigUserConfig rpcTaskConfigUserConfig);
 
     BaseResponse<TaskConfig> fromRpc(RpcFindTaskConfigByIdResp rpcFindTaskConfigByIdResp);
+
+    RpcTaskConfig toRpc(TaskConfigEditReq taskConfigEditReq);
+
+    @Mappings({
+            @Mapping(target = "genderList", source = "gender"),
+            @Mapping(target = "regionCodeList", source = "regionCode")
+    })
+    RpcTaskConfigUserConfig toRpc(TaskConfigUserConfig taskConfigUserConfig);
 
 }

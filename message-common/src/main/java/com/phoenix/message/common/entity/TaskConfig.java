@@ -13,16 +13,16 @@ import lombok.experimental.Accessors;
 
 /**
  * <p>
- * 推送任务配置表
+ * 任务配置
  * </p>
  *
  * @author nome
- * @since 2020-11-09
+ * @since 2020-12-29
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@ApiModel(value="TaskConfig对象", description="推送任务配置表")
+@ApiModel(value="TaskConfig对象", description="任务配置")
 public class TaskConfig extends Model<TaskConfig> {
 
     private static final long serialVersionUID = 1L;

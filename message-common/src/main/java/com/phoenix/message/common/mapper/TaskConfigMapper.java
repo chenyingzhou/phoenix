@@ -5,11 +5,11 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**
  * <p>
- * 推送任务配置表 Mapper 接口
+ * 任务配置 Mapper 接口
  * </p>
  *
  * @author nome
- * @since 2020-11-02
+ * @since 2020-12-29
  */
 public interface TaskConfigMapper extends BaseMapper<TaskConfig> {
 

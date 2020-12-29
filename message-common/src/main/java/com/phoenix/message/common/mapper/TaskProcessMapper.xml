@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.phoenix.message.common.mapper.TaskProcessMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.phoenix.message.common.entity.TaskProcess">
+        <id column="id" property="id" />
+        <result column="task_id" property="taskId" />
+        <result column="start_offset" property="startOffset" />
+        <result column="end_offset" property="endOffset" />
+        <result column="last_offset" property="lastOffset" />
+        <result column="error_count" property="errorCount" />
+        <result column="status" property="status" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, task_id, start_offset, end_offset, last_offset, error_count, status, create_time, update_time
+    </sql>
+
+</mapper>

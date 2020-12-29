@@ -16,7 +16,7 @@ public class MybatisPlusGenerator {
         String databaseUrl = "jdbc:mysql://127.0.0.1:3306/phoenix?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2B0&allowPublicKeyRetrieval=true&useSSL=false";
         String databaseUsername = "root";
         String databasePassword = "root";
-        String[] tables = {"task_config"};
+        String[] tables = {"task_config", "task", "task_process"};
 
         GlobalConfig config = new GlobalConfig();
         String projectPath = System.getProperty("user.dir");

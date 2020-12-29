@@ -5,11 +5,11 @@ import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
  * <p>
- * 推送任务配置表 服务类
+ * 任务配置 服务类
  * </p>
  *
  * @author nome
- * @since 2020-11-02
+ * @since 2020-12-29
  */
 public interface TaskConfigService extends IService<TaskConfig> {
 

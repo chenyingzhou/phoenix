@@ -8,11 +8,11 @@ import org.springframework.stereotype.Service;
 
 /**
  * <p>
- * 推送任务配置表 服务实现类
+ * 任务配置 服务实现类
  * </p>
  *
  * @author nome
- * @since 2020-11-02
+ * @since 2020-12-29
  */
 @Service
 public class TaskConfigServiceImpl extends ServiceImpl<TaskConfigMapper, TaskConfig> implements TaskConfigService {

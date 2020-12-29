@@ -15,6 +15,7 @@
         <module>message-proto</module>
         <module>message-grpc</module>
         <module>message-web</module>
+        <module>message-job</module>
     </modules>
 
     <parent>

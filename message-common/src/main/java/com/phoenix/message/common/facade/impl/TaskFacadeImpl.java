@@ -5,17 +5,31 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.phoenix.message.common.dto.Pagination;
 import com.phoenix.message.common.dto.TaskConfigDto;
 import com.phoenix.message.common.dto.TaskConfigFilterDto;
+import com.phoenix.message.common.dto.TaskDto;
+import com.phoenix.message.common.entity.Task;
 import com.phoenix.message.common.entity.TaskConfig;
 import com.phoenix.message.common.facade.TaskFacade;
 import com.phoenix.message.common.mapstruct.TaskConfigMapStruct;
+import com.phoenix.message.common.mapstruct.TaskMapStruct;
 import com.phoenix.message.common.service.TaskConfigService;
+import com.phoenix.message.common.service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
+import java.util.List;
+
 @Component
 public class TaskFacadeImpl implements TaskFacade {
+
+    private final TaskConfigService taskConfigService;
+    private final TaskService taskService;
+
     @Autowired
-    private TaskConfigService taskConfigService;
+    TaskFacadeImpl(TaskConfigService taskConfigService, TaskService taskService) {
+        this.taskConfigService = taskConfigService;
+        this.taskService = taskService;
+    }
 
     @Override
     public Pagination<TaskConfigDto> findTaskConfigWithPagination(TaskConfigFilterDto taskConfigFilterDto) {
@@ -61,10 +75,31 @@ public class TaskFacadeImpl implements TaskFacade {
         return TaskConfigMapStruct.INSTANCE.entity2Dto(taskConfig);
     }
 
+    public List<TaskConfigDto> findRunningTaskConfigList() {
+        LocalDateTime now = LocalDateTime.now();
+        QueryWrapper<TaskConfig> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq(TaskConfig.STATUS, TASK_STATUS_RUNNING);
+        queryWrapper.lt(TaskConfig.RECORD_TIME, now);
+        queryWrapper.and(wrapper -> wrapper.le(TaskConfig.START_TIME, now).or().eq(TaskConfig.START_TIME, "0000-00-00"));
+        queryWrapper.and(wrapper -> wrapper.ge(TaskConfig.END_TIME, now).or().eq(TaskConfig.END_TIME, "0000-00-00"));
+        List<TaskConfig> taskConfigList = taskConfigService.list(queryWrapper);
+        return TaskConfigMapStruct.INSTANCE.entity2Dto(taskConfigList);
+    }
+
     @Override
     public Integer saveTaskConfig(TaskConfigDto taskConfigDto) {
         TaskConfig taskConfig = TaskConfigMapStruct.INSTANCE.dto2Entity(taskConfigDto);
         taskConfigService.saveOrUpdate(taskConfig);
         return taskConfig.getId();
+    }
+
+    public Boolean saveTaskList(List<TaskDto> taskDtoList) {
+        List<Task> taskList = TaskMapStruct.INSTANCE.dto2Entity(taskDtoList);
+        Boolean result = taskService.saveOrUpdateBatch(taskList);
+        if (result) {
+            taskDtoList.clear();
+            taskDtoList.addAll(TaskMapStruct.INSTANCE.entity2Dto(taskList));
+        }
+        return result;
     }
 }

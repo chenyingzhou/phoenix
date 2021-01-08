@@ -13,8 +13,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 @GrpcService
 public class GrpcTaskService extends TaskServiceGrpc.TaskServiceImplBase {
 
+    private final TaskFacade taskFacade;
+
     @Autowired
-    TaskFacade taskFacade;
+    GrpcTaskService(TaskFacade taskFacade) {
+        this.taskFacade = taskFacade;
+    }
 
     @Override
     public void rpcFindTaskConfigListWithPagination(RpcFindTaskConfigListWithPaginationReq request, StreamObserver<RpcFindTaskConfigListWithPaginationResp> responseObserver) {

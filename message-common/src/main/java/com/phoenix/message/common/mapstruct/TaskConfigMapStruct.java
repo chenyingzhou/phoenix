@@ -4,14 +4,18 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.phoenix.message.common.dto.JsonColumn;
 import com.phoenix.message.common.dto.Pagination;
 import com.phoenix.message.common.dto.TaskConfigDto;
+import com.phoenix.message.common.dto.TaskDto;
 import com.phoenix.message.common.dto.taskconfig.TaskConfigAccountConfigDto;
 import com.phoenix.message.common.dto.taskconfig.TaskConfigContentConfigDto;
 import com.phoenix.message.common.dto.taskconfig.TaskConfigUserConfigDto;
 import com.phoenix.message.common.dto.taskconfig.TaskConfigVersionConfigDto;
+import com.phoenix.message.common.entity.Task;
 import com.phoenix.message.common.entity.TaskConfig;
 import com.phoenix.message.common.util.JacksonUtil;
 import org.mapstruct.*;
 import org.mapstruct.factory.Mappers;
+
+import java.util.List;
 
 @Mapper()
 public interface TaskConfigMapStruct extends BaseMapStruct {
@@ -40,6 +44,8 @@ public interface TaskConfigMapStruct extends BaseMapStruct {
     Pagination<TaskConfigDto> entity2Dto(Page<TaskConfig> taskConfigPage);
 
     TaskConfigDto entity2Dto(TaskConfig taskConfig);
+
+    List<TaskConfigDto> entity2Dto(List<TaskConfig> taskConfigList);
 
     TaskConfig dto2Entity(TaskConfigDto taskConfigDto);
 }
